@@ -63,6 +63,16 @@ function useRandomWikiArticles({
 
 function WikipediaIframe({ article }) {
   const iframe = useRef();
+
+  const iframeStyle = `
+  body {
+    line-height: 1.4;
+  }
+  .mw-editsection {
+    display: none;
+  }
+  `;
+
   useEffect(() => {
     const url = new URL('https://en.wikipedia.org/w/api.php');
 
@@ -71,17 +81,26 @@ function WikipediaIframe({ article }) {
       action: 'parse',
       pageid: article.pageid,
       mobileformat: true,
+      prop: 'text',
       origin: '*',
     }).forEach(([k, v]) => url.searchParams.set(k, v));
 
     fetch(url)
       .then(res => res.json())
       .then(res => {
-        console.log(res.parse.text);
-        iframe.current.contentDocument.body.innerHTML =
+        const document = iframe.current.contentDocument;
+        const style = document.createElement('style');
+        style.innerHTML = iframeStyle;
+        document.head.appendChild(style);
+
+        document.body.innerHTML =
           `<h1>${article.title}</h1>` + res.parse.text['*'];
+
+        document
+          .querySelectorAll('a')
+          .forEach(el => el.addEventListener('click', e => e.preventDefault()));
       });
-  }, [article.pageid, article.title]);
+  }, [article.pageid, article.title, iframeStyle]);
 
   return (
     <iframe
@@ -193,7 +212,7 @@ function TwoPlayerGame({ names }) {
           It is now the turn of the liar ({liar}). To read up on one topic,
           please pick one of these articles:
         </p>
-        <ul>
+        <ul className="box-list">
           {randomArticles.map((article, i) => (
             <li key={article.pageid}>
               <button
@@ -213,22 +232,16 @@ function TwoPlayerGame({ names }) {
 
   if (stage === 'reading') {
     return (
-      <>
+      <div className="flex-column" style={{ height: '100vh', margin: '-1em' }}>
         <WikipediaIframe article={chosenArticle} />
         <button
-          style={{
-            position: 'fixed',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            fontSize: '2em',
-          }}
+          class="done-reading"
           type="button"
           onClick={() => dispatch({ type: 'done reading' })}
         >
           I'm done reading
         </button>
-      </>
+      </div>
     );
   }
 
@@ -240,7 +253,7 @@ function TwoPlayerGame({ names }) {
           ask questions about all these articles. Once you think you know which
           article the person read, make a guess!
         </p>
-        <ul>
+        <ul className="box-list">
           {randomArticles.map(article => (
             <li key={article.pageid}>
               <button
@@ -263,11 +276,11 @@ function TwoPlayerGame({ names }) {
       <>
         <p>
           {guessCorrect
-            ? `Investigator won! ${liar} did read about ${chosenArticle.title}`
-            : `Liar won! ${liar} actually read about ${chosenArticle.title}`}
+            ? `The investigator, ${investigator} won! ${liar} did read about ${chosenArticle.title}`
+            : `The liar, ${liar} won! ${liar} actually read about ${chosenArticle.title}`}
         </p>
         <p>scores:</p>
-        <ul>
+        <ul class="scores-list">
           {Object.entries(points).map(([name, score]) => (
             <li key={name}>
               {name}: {score}
@@ -286,8 +299,10 @@ function TwoPlayerGame({ names }) {
 
 function App() {
   const [started, setStarted] = useState(false);
-  const [nameOne, setNameOne] = useState('Haroen');
-  const [nameTwo, setNameTwo] = useState('Abi');
+  const [nameOne, setNameOne] = useState();
+  const [nameTwo, setNameTwo] = useState();
+
+  const start = () => setStarted(true);
 
   return (
     <>
@@ -306,25 +321,33 @@ function App() {
             the opportunity to ask any questions about both.
           </p>
           <p>Will the investigator find out which page the liar made up?</p>
-          <label>
-            Player one:{' '}
-            <input
-              type="text"
-              defaultValue={nameOne}
-              onChange={e => setNameOne(e.target.value)}
-            />
-          </label>
-          <label>
-            Player two:{' '}
-            <input
-              type="text"
-              defaultValue={nameTwo}
-              onChange={e => setNameTwo(e.target.value)}
-            />
-          </label>
-          <button type="button" onClick={() => setStarted(true)}>
-            Start!
-          </button>
+          <form
+            className="flex-column child-spacing"
+            onSubmit={e => {
+              e.preventDefault();
+              start();
+            }}
+          >
+            <label>
+              Player one:{' '}
+              <input
+                required
+                type="text"
+                defaultValue={nameOne}
+                onChange={e => setNameOne(e.target.value)}
+              />
+            </label>
+            <label>
+              Player two:{' '}
+              <input
+                required
+                type="text"
+                defaultValue={nameTwo}
+                onChange={e => setNameTwo(e.target.value)}
+              />
+            </label>
+            <button style={{ padding: '.5em' }}>Start!</button>
+          </form>
         </>
       )}
     </>

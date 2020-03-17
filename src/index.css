@@ -4,12 +4,68 @@ body,
   height: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 1em;
+  text-align: center;
 }
 
 iframe {
   width: 100%;
   height: 100%;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+button {
+  border: 1px solid;
+  border-radius: 0.2em;
+  background: white;
+  padding: 1em;
+}
+
+button:hover {
+  background: #eeeeee;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.child-spacing > * {
+  margin: 1em 0;
+}
+
+.box-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.scores-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.box-list button {
+  padding: 2em;
+  margin: 1em;
+}
+
+.done-reading {
+  width: 100%;
+  font-size: 2em;
+  border-radius: 0;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
 }
