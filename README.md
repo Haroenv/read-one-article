@@ -1,4 +1,4 @@
-# Read one article
+# Read One Article
 
 This is a Wikipedia game inspired by ["Two Of These People Are Lying"](https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0), a YouTube format by Tom Scott & Matt Grey.
 

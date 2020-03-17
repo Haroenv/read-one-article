@@ -279,8 +279,22 @@ function TwoPlayerGame({ names, stop }) {
             ? `The investigator, ${investigator} won! ${liar} did read about ${chosenArticle.title}`
             : `The liar, ${liar} won! ${liar} actually read about ${chosenArticle.title}`}
         </p>
+        <p>read the articles:</p>
+        <ul className="box-list">
+          {randomArticles.map(article => (
+            <li key={article.pageid}>
+              <a
+                href={article.fullurl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {article.title}
+              </a>
+            </li>
+          ))}
+        </ul>
         <p>scores:</p>
-        <ul class="scores-list">
+        <ul className="scores-list">
           {Object.entries(points).map(([name, score]) => (
             <li key={name}>
               {name}: {score}

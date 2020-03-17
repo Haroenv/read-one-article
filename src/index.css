@@ -25,7 +25,8 @@ button {
   font: inherit;
 }
 
-button {
+button,
+.box-list a {
   border: 1px solid;
   border-radius: 0.2em;
   background: white;
@@ -65,7 +66,7 @@ button:hover {
   padding: 0;
 }
 
-.box-list button {
+.box-list > * {
   padding: 2em;
   margin: 1em;
 }
