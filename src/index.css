@@ -68,3 +68,10 @@ button:hover {
   border-radius: 0;
   border-bottom: none;
 }
+
+@media (max-width: 60em) {
+  .done-reading {
+    border-left: none;
+    border-right: none;
+  }
+}
