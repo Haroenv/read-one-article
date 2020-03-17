@@ -173,7 +173,7 @@ function reducer(state, action) {
   }
 }
 
-function TwoPlayerGame({ names }) {
+function TwoPlayerGame({ names, stop }) {
   const [
     { liar, investigator, stage, chosenArticle, guessCorrect, points },
     dispatch,
@@ -287,9 +287,21 @@ function TwoPlayerGame({ names }) {
             </li>
           ))}
         </ul>
-        <button type="button" onClick={() => dispatch({ type: 'next round' })}>
-          start next round
-        </button>
+        <ul className="box-list">
+          <li>
+            <button
+              type="button"
+              onClick={() => dispatch({ type: 'next round' })}
+            >
+              start next round
+            </button>
+          </li>
+          <li>
+            <button class="danger" type="button" onClick={() => stop()}>
+              stop playing
+            </button>
+          </li>
+        </ul>
       </>
     );
   }
@@ -303,13 +315,15 @@ function App() {
   const [nameTwo, setNameTwo] = useState();
 
   const start = () => setStarted(true);
+  const stop = () => setStarted(false);
 
   return (
     <>
       {started ? (
-        <TwoPlayerGame names={[nameOne, nameTwo]} />
+        <TwoPlayerGame names={[nameOne, nameTwo]} stop={stop} />
       ) : (
         <>
+          <h1>Read One Article</h1>
           <p>
             In this game, there are two roles: the investigator and liar. Every
             round you will swap between those roles. The liar will be presented

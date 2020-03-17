@@ -36,6 +36,14 @@ button:hover {
   background: #eeeeee;
 }
 
+.danger {
+  background: #ffebeb;
+}
+
+.danger:hover {
+  background: #ffa7a7;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
