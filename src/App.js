@@ -349,6 +349,13 @@ function App() {
             the opportunity to ask any questions about both.
           </p>
           <p>Will the investigator find out which page the liar made up?</p>
+          <p>
+            This game was inspired by{' '}
+            <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
+              Two Of These People Are Lying
+            </a>{' '}
+            by Tom Scott and Matt Grey.
+          </p>
           <form
             className="flex-column child-spacing"
             onSubmit={e => {
