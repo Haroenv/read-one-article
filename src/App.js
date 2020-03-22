@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useReducer, useRef } from 'react';
+import raw from 'raw.macro';
 
 function useRandomWikiArticles({
   minContentLength,
@@ -64,15 +65,6 @@ function useRandomWikiArticles({
 function WikipediaIframe({ article }) {
   const iframe = useRef();
 
-  const iframeStyle = `
-  body {
-    line-height: 1.4;
-  }
-  .mw-editsection {
-    display: none;
-  }
-  `;
-
   useEffect(() => {
     const url = new URL('https://en.wikipedia.org/w/api.php');
 
@@ -90,17 +82,24 @@ function WikipediaIframe({ article }) {
       .then(res => {
         const document = iframe.current.contentDocument;
         const style = document.createElement('style');
-        style.innerHTML = iframeStyle;
+        style.innerHTML = raw('./wikipedia.css');
         document.head.appendChild(style);
 
-        document.body.innerHTML =
-          `<h1>${article.title}</h1>` + res.parse.text['*'];
+        document.body.innerHTML = `
+          <base href="https://en.wikipedia.org" />
+          <h1>${article.title}</h1>
+          <div class="siteSub">From Wikipedia, the free encyclopedia</div>
+          ${res.parse.text['*']}`;
 
-        document
-          .querySelectorAll('a')
-          .forEach(el => el.addEventListener('click', e => e.preventDefault()));
+        document.querySelectorAll('a').forEach(el =>
+          el.addEventListener('click', e => {
+            if (e.target.href[0] !== '#') {
+              e.preventDefault();
+            }
+          })
+        );
       });
-  }, [article.pageid, article.title, iframeStyle]);
+  }, [article.pageid, article.title]);
 
   return (
     <iframe
@@ -232,10 +231,10 @@ function TwoPlayerGame({ names, stop }) {
 
   if (stage === 'reading') {
     return (
-      <div className="flex-column" style={{ height: '100vh', margin: '-1em' }}>
+      <div className="flex-column full-size">
         <WikipediaIframe article={chosenArticle} />
         <button
-          class="done-reading"
+          className="done-reading"
           type="button"
           onClick={() => dispatch({ type: 'done reading' })}
         >
