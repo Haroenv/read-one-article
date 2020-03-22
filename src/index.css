@@ -83,8 +83,7 @@ button:hover {
 }
 
 .box-list > * {
-  padding: 2em;
-  margin: 1em;
+  padding: 1em;
 }
 
 .done-reading {
