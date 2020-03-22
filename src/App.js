@@ -139,6 +139,12 @@ function reducer(state, action) {
     case 'done reading': {
       return {
         ...state,
+        stage: 'preguessing',
+      };
+    }
+    case 'start guessing': {
+      return {
+        ...state,
         stage: 'guessing',
       };
     }
@@ -239,6 +245,27 @@ function TwoPlayerGame({ names, stop }) {
           onClick={() => dispatch({ type: 'done reading' })}
         >
           I'm done reading
+        </button>
+      </div>
+    );
+  }
+
+  if (stage === 'preguessing') {
+    return (
+      <div
+        style={{
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => dispatch({ type: 'start guessing' })}
+        >
+          start guessing
         </button>
       </div>
     );
