@@ -404,7 +404,17 @@ function App() {
                 required
                 type="text"
                 defaultValue={nameTwo}
-                onChange={e => setNameTwo(e.target.value)}
+                onChange={e => {
+                  setNameTwo(e.target.value);
+
+                  if (nameOne === e.target.value) {
+                    e.target.setCustomValidity(
+                      "Players can't have the same name"
+                    );
+                  } else {
+                    e.target.setCustomValidity('');
+                  }
+                }}
               />
             </label>
             <button style={{ padding: '.5em' }}>Start!</button>
