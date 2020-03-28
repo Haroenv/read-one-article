@@ -8,7 +8,8 @@ body {
   --c-light: #f8f9fa;
 }
 
-.mw-editsection {
+.mw-editsection,
+.hide-when-compact {
   display: none;
 }
 
@@ -20,6 +21,15 @@ body {
   float: right;
   clear: right;
   line-height: 1.5em;
+  max-width: 22em;
+  width: inherit;
+}
+
+@media (max-width: 440px) {
+  .infobox {
+    margin: 0;
+    float: none;
+  }
 }
 
 img {
