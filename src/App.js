@@ -116,8 +116,15 @@ function WikipediaIframe({ article, language }) {
 // 2. reading
 // 3. guessing
 // 4. recap
+// 5? finish
 
-function init({ liar, investigator, points }) {
+function init({
+  liar,
+  investigator,
+  points,
+  chosenArticles = [],
+  nonChosenArticles = [],
+}) {
   return {
     liar,
     investigator,
@@ -125,15 +132,22 @@ function init({ liar, investigator, points }) {
     stage: 'choosing',
     chosenArticle: null,
     guessCorrect: false,
+    chosenArticles,
+    nonChosenArticles,
   };
 }
 
 function reducer(state, action) {
   switch (action.type) {
     case 'choose article': {
+      const { article, allArticles } = action.payload;
       return {
         ...state,
-        chosenArticle: action.payload,
+        chosenArticle: article,
+        chosenArticles: state.chosenArticles.concat(article),
+        nonChosenArticles: state.nonChosenArticles.concat(
+          allArticles.filter(art => art !== article)
+        ),
         stage: 'reading',
       };
     }
@@ -166,12 +180,26 @@ function reducer(state, action) {
       };
     }
     case 'next round': {
-      const { investigator, liar, points } = state;
+      const {
+        investigator,
+        liar,
+        points,
+        chosenArticles,
+        nonChosenArticles,
+      } = state;
       return init({
         liar: investigator,
         investigator: liar,
         points,
+        chosenArticles,
+        nonChosenArticles,
       });
+    }
+    case 'finish': {
+      return {
+        ...state,
+        stage: 'finish',
+      };
     }
     default: {
       throw new Error('wrong dispatch');
@@ -181,7 +209,16 @@ function reducer(state, action) {
 
 function TwoPlayerGame({ names, stop, language }) {
   const [
-    { liar, investigator, stage, chosenArticle, guessCorrect, points },
+    {
+      liar,
+      investigator,
+      stage,
+      chosenArticle,
+      guessCorrect,
+      points,
+      chosenArticles,
+      nonChosenArticles,
+    },
     dispatch,
   ] = useReducer(
     reducer,
@@ -201,15 +238,15 @@ function TwoPlayerGame({ names, stop, language }) {
   });
 
   if (loading) {
-    return 'loading…';
+    return <div className="full-center">loading…</div>;
   }
 
   if (error) {
-    return 'Error: ' + error.message;
+    return <div className="full-center">Error: {error.message}</div>;
   }
 
   if (!randomArticles) {
-    return 'Error: no data';
+    return <div className="full-center">Error: no data</div>;
   }
 
   if (stage === 'choosing') {
@@ -225,7 +262,10 @@ function TwoPlayerGame({ names, stop, language }) {
               <button
                 type="button"
                 onClick={() =>
-                  dispatch({ type: 'choose article', payload: article })
+                  dispatch({
+                    type: 'choose article',
+                    payload: { article, allArticles: randomArticles },
+                  })
                 }
               >
                 Article {i + 1}
@@ -278,9 +318,7 @@ function TwoPlayerGame({ names, stop, language }) {
             <li key={article.pageid}>
               <button
                 type="button"
-                onClick={() => {
-                  dispatch({ type: 'guess', payload: article });
-                }}
+                onClick={() => dispatch({ type: 'guess', payload: article })}
               >
                 {article.title}
               </button>
@@ -331,11 +369,61 @@ function TwoPlayerGame({ names, stop, language }) {
             </button>
           </li>
           <li>
-            <button class="danger" type="button" onClick={() => stop()}>
+            <button
+              className="danger"
+              type="button"
+              onClick={() => dispatch({ type: 'finish' })}
+            >
               stop playing
             </button>
           </li>
         </ul>
+      </>
+    );
+  }
+
+  if (stage === 'finish') {
+    return (
+      <>
+        <p>The final score is:</p>
+        <ul className="scores-list">
+          {Object.entries(points).map(([name, score]) => (
+            <li key={name}>
+              {name}: {score}
+            </li>
+          ))}
+        </ul>
+        <p>The articles you read about were:</p>
+        <ul className="box-list vertical">
+          {chosenArticles.map(article => (
+            <li key={article.pageid}>
+              <a
+                href={article.fullurl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {article.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p>The articles you didn't read about were:</p>
+        <ul className="box-list vertical">
+          {nonChosenArticles.map(article => (
+            <li key={article.pageid}>
+              <a
+                href={article.fullurl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {article.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <button type="button" onClick={() => stop()}>
+          new game
+        </button>
       </>
     );
   }
