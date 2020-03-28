@@ -254,15 +254,7 @@ function TwoPlayerGame({ names, stop, language }) {
 
   if (stage === 'preguessing') {
     return (
-      <div
-        style={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <div className="full-center">
         <button
           type="button"
           onClick={() => dispatch({ type: 'start guessing' })}
