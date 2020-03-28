@@ -4,6 +4,7 @@ import raw from 'raw.macro';
 function useRandomWikiArticles({
   minContentLength,
   length,
+  language,
   requestInvalidator,
 }) {
   const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ function useRandomWikiArticles({
 
   useEffect(() => {
     setLoading(true);
-    const url = new URL('https://en.wikipedia.org/w/api.php');
+    const url = new URL(`https://${language}.wikipedia.org/w/api.php`);
 
     Object.entries({
       format: 'json',
@@ -53,7 +54,7 @@ function useRandomWikiArticles({
     return () => {
       setLoading(false);
     };
-  }, [minContentLength, requestInvalidator, length]);
+  }, [minContentLength, requestInvalidator, language, length]);
 
   return {
     loading,
@@ -62,11 +63,11 @@ function useRandomWikiArticles({
   };
 }
 
-function WikipediaIframe({ article }) {
+function WikipediaIframe({ article, language }) {
   const iframe = useRef();
 
   useEffect(() => {
-    const url = new URL('https://en.wikipedia.org/w/api.php');
+    const url = new URL(`https://${language}.wikipedia.org/w/api.php`);
 
     Object.entries({
       format: 'json',
@@ -86,7 +87,7 @@ function WikipediaIframe({ article }) {
         document.head.appendChild(style);
 
         document.body.innerHTML = `
-          <base href="https://en.wikipedia.org" />
+          <base href="https://${language}.wikipedia.org" />
           <h1>${article.title}</h1>
           <div class="siteSub">From Wikipedia, the free encyclopedia</div>
           ${res.parse.text['*']}`;
@@ -99,7 +100,7 @@ function WikipediaIframe({ article }) {
           })
         );
       });
-  }, [article.pageid, article.title]);
+  }, [article.pageid, article.title, language]);
 
   return (
     <iframe
@@ -178,7 +179,7 @@ function reducer(state, action) {
   }
 }
 
-function TwoPlayerGame({ names, stop }) {
+function TwoPlayerGame({ names, stop, language }) {
   const [
     { liar, investigator, stage, chosenArticle, guessCorrect, points },
     dispatch,
@@ -196,6 +197,7 @@ function TwoPlayerGame({ names, stop }) {
     minContentLength: 10_000,
     length: 2,
     requestInvalidator: liar,
+    language,
   });
 
   if (loading) {
@@ -238,7 +240,7 @@ function TwoPlayerGame({ names, stop }) {
   if (stage === 'reading') {
     return (
       <div className="flex-column full-size">
-        <WikipediaIframe article={chosenArticle} />
+        <WikipediaIframe article={chosenArticle} language={language} />
         <button
           className="done-reading"
           type="button"
@@ -353,6 +355,7 @@ function App() {
   const [started, setStarted] = useState(false);
   const [nameOne, setNameOne] = useState();
   const [nameTwo, setNameTwo] = useState();
+  const [language] = useState('en');
 
   const start = () => setStarted(true);
   const stop = () => setStarted(false);
@@ -360,7 +363,11 @@ function App() {
   return (
     <>
       {started ? (
-        <TwoPlayerGame names={[nameOne, nameTwo]} stop={stop} />
+        <TwoPlayerGame
+          names={[nameOne, nameTwo]}
+          stop={stop}
+          language={language}
+        />
       ) : (
         <>
           <h1>Read One Article</h1>
