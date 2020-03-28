@@ -32,6 +32,9 @@ button,
   border-radius: 0.2em;
   background: white;
   padding: 1em;
+  margin: auto;
+  cursor: pointer;
+  display: block;
 }
 
 button:hover {
@@ -75,6 +78,11 @@ button:hover {
   padding: 0;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box-list.vertical {
+  flex-direction: column;
 }
 
 .scores-list {
@@ -113,4 +121,12 @@ a:focus {
 
 a:visited {
   color: #0b0080;
+}
+
+.full-center {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
