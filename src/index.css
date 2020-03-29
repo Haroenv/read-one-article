@@ -86,6 +86,11 @@ button:hover {
   flex-wrap: wrap;
 }
 
+.box-list button,
+.box-list a {
+  width: 100%;
+}
+
 .box-list.vertical {
   flex-direction: column;
 }

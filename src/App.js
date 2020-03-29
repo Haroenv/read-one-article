@@ -146,6 +146,50 @@ function WikipediaIframe({ article, language }) {
   );
 }
 
+function Share() {
+  const [hasShareApi, setHasShareApi] = useState(
+    // Safari's share API doesnt do social, so it's useless
+    'share' in navigator && navigator.platform !== 'MacIntel'
+  );
+  const [shared, setShared] = useState(false);
+
+  const shareTitle = 'Read One Article';
+  const shareText = 'I just played Read One Article by @haroenv';
+  const shareUrl = window.location.href;
+
+  const tweetUrl = new URL('https://twitter.com/intent/tweet');
+  tweetUrl.searchParams.set('url', shareUrl);
+  tweetUrl.searchParams.set('text', shareText);
+
+  return (
+    <>
+      {shared && !hasShareApi && (
+        <input type="text" readOnly value={shareUrl} />
+      )}
+      <a
+        href={tweetUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={e => {
+          setShared(true);
+          if (hasShareApi) {
+            e.preventDefault();
+            navigator
+              .share({
+                title: shareTitle,
+                text: shareText,
+                url: shareUrl,
+              })
+              .catch(() => setHasShareApi(null));
+          }
+        }}
+      >
+        share
+      </a>
+    </>
+  );
+}
+
 // stage:
 // 1. choosing
 // 2. reading
@@ -473,9 +517,25 @@ function TwoPlayerGame({ names, stop, language }) {
               </li>
             ))}
           </ul>
-          <button type="button" onClick={() => stop()}>
-            new game
-          </button>
+          <ul className="box-list vertical">
+            <li>
+              <Share />
+            </li>
+            <li>
+              <a
+                href="https://github.com/haroenv/read-one-article"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Contribute
+              </a>
+            </li>
+            <li>
+              <button type="button" onClick={() => stop()}>
+                new game
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
     );
