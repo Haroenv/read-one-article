@@ -25,6 +25,18 @@ function createWikiURL(language, params) {
   return url;
 }
 
+// https://stackoverflow.com/a/12646864/3185307
+function shuffle(array) {
+  const shuffledArray = array.slice();
+
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  return shuffledArray;
+}
+
 function useRandomWikiArticles({
   minContentLength,
   length,
@@ -288,7 +300,7 @@ function TwoPlayerGame({ names, stop, language }) {
             please pick one of these articles:
           </p>
           <ul className="box-list">
-            {randomArticles.map((article, i) => (
+            {shuffle(randomArticles).map((article, i) => (
               <li key={article.pageid}>
                 <button
                   type="button"
