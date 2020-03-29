@@ -253,9 +253,12 @@ function TwoPlayerGame({ names, stop, language }) {
     init
   );
 
+  const [retryCount, setRetryCount] = useState(0);
+  const retry = () => setRetryCount(count => count + 1);
   const { loading, error, randomArticles } = useRandomWikiArticles({
     minContentLength: getMinContentLength(language),
     length: numArticles,
+    requestInvalidator: [liar, retryCount].join('~~~'),
     language,
   });
 
@@ -263,12 +266,17 @@ function TwoPlayerGame({ names, stop, language }) {
     return <div className="full-center">loading…</div>;
   }
 
-  if (error) {
-    return <div className="full-center">Error: {error.message}</div>;
-  }
-
-  if (!randomArticles) {
-    return <div className="full-center">Error: no data</div>;
+  if (error || !randomArticles || randomArticles.length < numArticles) {
+    return (
+      <div className="full-center">
+        <div>
+          <p>Error: {error?.message || 'no data'}</p>
+          <button type="button" onClick={() => retry()}>
+            try again
+          </button>
+        </div>
+      </div>
+    );
   }
 
   if (stage === 'choosing') {
