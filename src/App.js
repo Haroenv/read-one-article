@@ -503,6 +503,7 @@ function TwoPlayerGame({ names, stop, language }) {
               </li>
             ))}
           </ul>
+          <hr />
           <p>The articles you didn't read about were:</p>
           <ul className="box-list vertical">
             {nonChosenArticles.map(article => (
@@ -517,7 +518,8 @@ function TwoPlayerGame({ names, stop, language }) {
               </li>
             ))}
           </ul>
-          <ul className="box-list vertical">
+          <hr />
+          <ul className="box-list">
             <li>
               <Share />
             </li>

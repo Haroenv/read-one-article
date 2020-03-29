@@ -36,6 +36,7 @@ button,
   border: 1px solid;
   border-radius: 0.2em;
   background: white;
+  color: inherit;
   padding: 1em;
   margin: auto;
   cursor: pointer;
@@ -139,4 +140,9 @@ a:visited {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid currentColor;
 }
