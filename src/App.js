@@ -381,52 +381,54 @@ function TwoPlayerGame({ names, stop, language }) {
   if (stage === 'recap') {
     return (
       <div className="full-center">
-        <p>
-          {guessCorrect
-            ? `The investigator, ${investigator} won! ${liar} did read about ${chosenArticle.title}`
-            : `The liar, ${liar} won! ${liar} actually read about ${chosenArticle.title}`}
-        </p>
-        <p>read the articles:</p>
-        <ul className="box-list">
-          {randomArticles.map(article => (
-            <li key={article.pageid}>
-              <a
-                href={article.fullurl}
-                target="_blank"
-                rel="noopener noreferrer"
+        <div>
+          <p>
+            {guessCorrect
+              ? `The investigator, ${investigator} won! ${liar} did read about ${chosenArticle.title}`
+              : `The liar, ${liar} won! ${liar} actually read about ${chosenArticle.title}`}
+          </p>
+          <p>read the articles:</p>
+          <ul className="box-list">
+            {randomArticles.map(article => (
+              <li key={article.pageid}>
+                <a
+                  href={article.fullurl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {article.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p>scores:</p>
+          <ul className="scores-list">
+            {Object.entries(points).map(([name, score]) => (
+              <li key={name}>
+                {name}: {score}
+              </li>
+            ))}
+          </ul>
+          <ul className="box-list">
+            <li>
+              <button
+                type="button"
+                onClick={() => dispatch({ type: 'next round' })}
               >
-                {article.title}
-              </a>
+                start next round
+              </button>
             </li>
-          ))}
-        </ul>
-        <p>scores:</p>
-        <ul className="scores-list">
-          {Object.entries(points).map(([name, score]) => (
-            <li key={name}>
-              {name}: {score}
+            <li>
+              <button
+                className="danger"
+                type="button"
+                onClick={() => dispatch({ type: 'finish' })}
+              >
+                stop playing
+              </button>
             </li>
-          ))}
-        </ul>
-        <ul className="box-list">
-          <li>
-            <button
-              type="button"
-              onClick={() => dispatch({ type: 'next round' })}
-            >
-              start next round
-            </button>
-          </li>
-          <li>
-            <button
-              className="danger"
-              type="button"
-              onClick={() => dispatch({ type: 'finish' })}
-            >
-              stop playing
-            </button>
-          </li>
-        </ul>
+          </ul>
+        </div>
       </div>
     );
   }
@@ -434,45 +436,47 @@ function TwoPlayerGame({ names, stop, language }) {
   if (stage === 'finish') {
     return (
       <div className="full-center">
-        <p>The final score is:</p>
-        <ul className="scores-list">
-          {Object.entries(points).map(([name, score]) => (
-            <li key={name}>
-              {name}: {score}
-            </li>
-          ))}
-        </ul>
-        <p>The articles you read about were:</p>
-        <ul className="box-list vertical">
-          {chosenArticles.map(article => (
-            <li key={article.pageid}>
-              <a
-                href={article.fullurl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {article.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <p>The articles you didn't read about were:</p>
-        <ul className="box-list vertical">
-          {nonChosenArticles.map(article => (
-            <li key={article.pageid}>
-              <a
-                href={article.fullurl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {article.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <button type="button" onClick={() => stop()}>
-          new game
-        </button>
+        <div>
+          <p>The final score is:</p>
+          <ul className="scores-list">
+            {Object.entries(points).map(([name, score]) => (
+              <li key={name}>
+                {name}: {score}
+              </li>
+            ))}
+          </ul>
+          <p>The articles you read about were:</p>
+          <ul className="box-list vertical">
+            {chosenArticles.map(article => (
+              <li key={article.pageid}>
+                <a
+                  href={article.fullurl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {article.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p>The articles you didn't read about were:</p>
+          <ul className="box-list vertical">
+            {nonChosenArticles.map(article => (
+              <li key={article.pageid}>
+                <a
+                  href={article.fullurl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {article.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <button type="button" onClick={() => stop()}>
+            new game
+          </button>
+        </div>
       </div>
     );
   }
