@@ -281,29 +281,31 @@ function TwoPlayerGame({ names, stop, language }) {
 
   if (stage === 'choosing') {
     return (
-      <>
-        <p>
-          It is now the turn of the liar ({liar}). To read up on one topic,
-          please pick one of these articles:
-        </p>
-        <ul className="box-list">
-          {randomArticles.map((article, i) => (
-            <li key={article.pageid}>
-              <button
-                type="button"
-                onClick={() =>
-                  dispatch({
-                    type: 'choose article',
-                    payload: { article, allArticles: randomArticles },
-                  })
-                }
-              >
-                Article {i + 1}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </>
+      <div className="full-center">
+        <div>
+          <p>
+            It is now the turn of the liar ({liar}). To read up on one topic,
+            please pick one of these articles:
+          </p>
+          <ul className="box-list">
+            {randomArticles.map((article, i) => (
+              <li key={article.pageid}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    dispatch({
+                      type: 'choose article',
+                      payload: { article, allArticles: randomArticles },
+                    })
+                  }
+                >
+                  Article {i + 1}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     );
   }
 
@@ -325,43 +327,48 @@ function TwoPlayerGame({ names, stop, language }) {
   if (stage === 'preguessing') {
     return (
       <div className="full-center">
-        <button
-          type="button"
-          onClick={() => dispatch({ type: 'start guessing' })}
-        >
-          start guessing
-        </button>
+        <div>
+          <p>Please give the device to {investigator}</p>
+          <button
+            type="button"
+            onClick={() => dispatch({ type: 'start guessing' })}
+          >
+            start guessing
+          </button>
+        </div>
       </div>
     );
   }
 
   if (stage === 'guessing') {
     return (
-      <>
-        <p>
-          It is now the turn of the investigator ({investigator}). You now can
-          ask questions about all these articles. Once you think you know which
-          article the person read, make a guess!
-        </p>
-        <ul className="box-list">
-          {randomArticles.map(article => (
-            <li key={article.pageid}>
-              <button
-                type="button"
-                onClick={() => dispatch({ type: 'guess', payload: article })}
-              >
-                {article.title}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </>
+      <div className="full-center">
+        <div>
+          <p>
+            It is now the turn of the investigator ({investigator}). You now can
+            ask questions about all these articles. Once you think you know
+            which article the person read, make a guess!
+          </p>
+          <ul className="box-list">
+            {randomArticles.map(article => (
+              <li key={article.pageid}>
+                <button
+                  type="button"
+                  onClick={() => dispatch({ type: 'guess', payload: article })}
+                >
+                  {article.title}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     );
   }
 
   if (stage === 'recap') {
     return (
-      <>
+      <div className="full-center">
         <p>
           {guessCorrect
             ? `The investigator, ${investigator} won! ${liar} did read about ${chosenArticle.title}`
@@ -408,13 +415,13 @@ function TwoPlayerGame({ names, stop, language }) {
             </button>
           </li>
         </ul>
-      </>
+      </div>
     );
   }
 
   if (stage === 'finish') {
     return (
-      <>
+      <div className="full-center">
         <p>The final score is:</p>
         <ul className="scores-list">
           {Object.entries(points).map(([name, score]) => (
@@ -454,7 +461,7 @@ function TwoPlayerGame({ names, stop, language }) {
         <button type="button" onClick={() => stop()}>
           new game
         </button>
-      </>
+      </div>
     );
   }
 
