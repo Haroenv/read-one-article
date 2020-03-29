@@ -22,8 +22,13 @@ iframe {
 }
 
 input,
-button {
+button,
+select {
   font: inherit;
+}
+
+select.language {
+  min-width: 15em;
 }
 
 button,

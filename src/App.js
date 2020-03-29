@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useReducer, useRef } from 'react';
 import raw from 'raw.macro';
 
+
+function createWikiURL(language, params) {
+  const url = new URL(`https://${language}.wikipedia.org/w/api.php`);
+
+  Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+
+  return url;
+}
+
 function useRandomWikiArticles({
   minContentLength,
   length,
@@ -435,80 +444,122 @@ function App() {
   const [started, setStarted] = useState(false);
   const [nameOne, setNameOne] = useState();
   const [nameTwo, setNameTwo] = useState();
-  const [language] = useState('en');
+  const [language, setLanguage] = useState('en');
+  const [languages, setLanguages] = useState([]);
+
+  useEffect(() => {
+    const url = createWikiURL('en', {
+      action: 'query',
+      format: 'json',
+      prop: 'langlinks',
+      llprop: 'autonym',
+      titles: 'Main Page',
+      lllimit: '50',
+      origin: '*',
+    });
+
+    fetch(url)
+      .then(res => res.json())
+      .then(res => {
+        if (typeof res?.query?.pages === 'object') {
+          const mainPage = Object.values(res.query.pages)[0];
+          if (Array.isArray(mainPage?.langlinks)) {
+            setLanguages(
+              mainPage.langlinks.map(({ lang, autonym }) => ({ lang, autonym }))
+            );
+          }
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const start = () => setStarted(true);
   const stop = () => setStarted(false);
 
-  return (
-    <>
-      {started ? (
-        <TwoPlayerGame
-          names={[nameOne, nameTwo]}
-          stop={stop}
-          language={language}
-        />
-      ) : (
-        <>
-          <h1>Read One Article</h1>
-          <p>
-            In this game, there are two roles: the investigator and liar. Every
-            round you will swap between those roles. The liar will be presented
-            with two random Wikipedia pages. They will only be able to read one
-            of those.
-          </p>
-          <p>
-            Then the investigator will see the titles of both pages, and given
-            the opportunity to ask any questions about both.
-          </p>
-          <p>Will the investigator find out which page the liar made up?</p>
-          <p>
-            This game was inspired by{' '}
-            <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
-              Two Of These People Are Lying
-            </a>{' '}
-            by Tom Scott and Matt Grey.
-          </p>
-          <form
-            className="flex-column child-spacing"
-            onSubmit={e => {
-              e.preventDefault();
-              start();
-            }}
-          >
-            <label>
-              Player one:{' '}
-              <input
-                required
-                type="text"
-                defaultValue={nameOne}
-                onChange={e => setNameOne(e.target.value)}
-              />
-            </label>
-            <label>
-              Player two:{' '}
-              <input
-                required
-                type="text"
-                defaultValue={nameTwo}
-                onChange={e => {
-                  setNameTwo(e.target.value);
+  if (started) {
+    return (
+      <TwoPlayerGame
+        names={[nameOne, nameTwo]}
+        stop={stop}
+        language={language}
+      />
+    );
+  }
 
-                  if (nameOne === e.target.value) {
-                    e.target.setCustomValidity(
-                      "Players can't have the same name"
-                    );
-                  } else {
-                    e.target.setCustomValidity('');
-                  }
-                }}
-              />
-            </label>
-            <button style={{ padding: '.5em' }}>Start!</button>
-          </form>
-        </>
-      )}
-    </>
+  return (
+    <div className="full-center">
+      <h1>Read One Article</h1>
+      <p>
+        In this game, there are two roles: the investigator and liar. Every
+        round you will swap between those roles. The liar will be presented with
+        two random Wikipedia pages. They will only be able to read one of those.
+      </p>
+      <p>
+        Then the investigator will see the titles of both pages, and given the
+        opportunity to ask any questions about both.
+      </p>
+      <p>Will the investigator find out which page the liar made up?</p>
+      <p>
+        This game was inspired by{' '}
+        <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
+          Two Of These People Are Lying
+        </a>{' '}
+        by Tom Scott and Matt Grey.
+      </p>
+      <form
+        className="flex-column child-spacing"
+        onSubmit={e => {
+          e.preventDefault();
+          start();
+        }}
+      >
+        <label>
+          Language:{' '}
+          <select
+            className="language"
+            value={language}
+            onChange={e => setLanguage(e.target.value)}
+          >
+            <option value="en">English</option>
+            {languages.map(({ lang, autonym }) => (
+              <option key={lang} value={lang}>
+                {autonym}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label>
+          Player one:{' '}
+          <input
+            required
+            type="text"
+            defaultValue={nameOne}
+            onChange={e => setNameOne(e.target.value)}
+          />
+        </label>
+
+        <label>
+          Player two:{' '}
+          <input
+            required
+            type="text"
+            defaultValue={nameTwo}
+            onChange={e => {
+              setNameTwo(e.target.value);
+
+              if (nameOne === e.target.value) {
+                e.target.setCustomValidity("Players can't have the same name");
+              } else {
+                e.target.setCustomValidity('');
+              }
+            }}
+          />
+        </label>
+
+        <button style={{ padding: '.5em' }}>Start!</button>
+      </form>
+    </div>
   );
 }
 
