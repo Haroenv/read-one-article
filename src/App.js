@@ -86,6 +86,9 @@ function WikipediaIframe({ article, language }) {
     fetch(url)
       .then(res => res.json())
       .then(res => {
+        if (!iframe) {
+          return;
+        }
         const document = iframe.current.contentDocument;
         const style = document.createElement('style');
         style.innerHTML = raw('./wikipedia.css');
