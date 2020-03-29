@@ -1,6 +1,21 @@
 import React, { useState, useEffect, useReducer, useRef } from 'react';
 import raw from 'raw.macro';
 
+const numArticles = 2;
+
+function getMinContentLength(language) {
+  switch (language) {
+    case 'simple': {
+      return 500;
+    }
+    case 'en': {
+      return 10_000;
+    }
+    default: {
+      return 5_000;
+    }
+  }
+}
 
 function createWikiURL(language, params) {
   const url = new URL(`https://${language}.wikipedia.org/w/api.php`);
@@ -239,9 +254,8 @@ function TwoPlayerGame({ names, stop, language }) {
   );
 
   const { loading, error, randomArticles } = useRandomWikiArticles({
-    minContentLength: 10_000,
-    length: 2,
-    requestInvalidator: liar,
+    minContentLength: getMinContentLength(language),
+    length: numArticles,
     language,
   });
 
