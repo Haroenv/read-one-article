@@ -22,9 +22,7 @@ function useRandomWikiArticles({
 
   useEffect(() => {
     setLoading(true);
-    const url = new URL(`https://${language}.wikipedia.org/w/api.php`);
-
-    Object.entries({
+    const url = createWikiURL(language, {
       format: 'json',
       action: 'query',
       generator: 'random',
@@ -33,7 +31,7 @@ function useRandomWikiArticles({
       grnlimit: 50,
       grnnamespace: 0,
       origin: '*',
-    }).forEach(([k, v]) => url.searchParams.set(k, v));
+    });
 
     fetch(url)
       .then(res => res.json())
@@ -76,16 +74,14 @@ function WikipediaIframe({ article, language }) {
   const iframe = useRef();
 
   useEffect(() => {
-    const url = new URL(`https://${language}.wikipedia.org/w/api.php`);
-
-    Object.entries({
+    const url = createWikiURL(language, {
       format: 'json',
       action: 'parse',
       pageid: article.pageid,
       mobileformat: true,
       prop: 'text',
       origin: '*',
-    }).forEach(([k, v]) => url.searchParams.set(k, v));
+    });
 
     fetch(url)
       .then(res => res.json())
