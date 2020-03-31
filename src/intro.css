@@ -28,7 +28,7 @@
 .intro-form select {
   width: 100%;
   border-radius: 0.2em;
-  border: 1px solid #a2a9b1;
+  border: 1px solid var(--c-grey-200);
   padding: 0.5em;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .intro-form button {
-  background-color: #f8f9fa;
+  background-color: var(--c-grey-100);
   font-size: 0.8em;
   font-weight: bold;
   margin: 0;
