@@ -11,7 +11,8 @@ body {
 }
 
 .mw-editsection,
-.hide-when-compact {
+.hide-when-compact,
+.ambox {
   display: none;
 }
 
