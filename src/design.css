@@ -1,0 +1,43 @@
+h1 {
+  font-family: 'Linux Libertine', Georgia, Times, serif;
+}
+
+.app-form {
+  box-shadow: 0 0 0.3em #999;
+  border-radius: 0.2em;
+  padding: 1.2em;
+  margin-bottom: 1.6em;
+  text-align: left;
+  max-width: 100%;
+}
+
+.app-form label {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-form label span {
+  font-variant: small-caps;
+  letter-spacing: 0.01em;
+}
+
+.app-form input[type='text'],
+.app-form button,
+.app-form select {
+  width: 100%;
+  border-radius: 0.2em;
+  border: 1px solid #a2a9b1;
+  padding: 0.5em;
+}
+
+.app-form input[type='text'] {
+  box-shadow: inset 0 0 0 1px transparent;
+}
+
+.app-form button {
+  background-color: #f8f9fa;
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}

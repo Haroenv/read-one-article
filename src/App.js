@@ -594,26 +594,33 @@ function App() {
 
   return (
     <div className="full-center">
-      <h1>Read One Article</h1>
-      <p>
-        In this game, there are two roles: the investigator and liar. Every
-        round you will swap between those roles. The liar will be presented with
-        two random Wikipedia pages. They will only be able to read one of those.
-      </p>
-      <p>
-        Then the investigator will see the titles of both pages, and given the
-        opportunity to ask any questions about both.
-      </p>
-      <p>Will the investigator find out which page the liar made up?</p>
+      <div className="app-header">
+        <h1>Read One Article</h1>
+      </div>
+
+      <div className="app-content">
+        <p>
+          In this game, there are two roles: the investigator and liar. Every
+          round you will swap between those roles. The liar will be presented
+          with two random Wikipedia pages. They will only be able to read one of
+          those.
+        </p>
+        <p>
+          Then the investigator will see the titles of both pages, and given the
+          opportunity to ask any questions about both.
+        </p>
+        <p>Will the investigator find out which page the liar made up?</p>
+      </div>
+
       <form
-        className="flex-column child-spacing"
+        className="app-form flex-column child-spacing"
         onSubmit={e => {
           e.preventDefault();
           start();
         }}
       >
         <label>
-          Language:{' '}
+          <span>Language:</span>{' '}
           <select
             className="language"
             value={language}
@@ -629,7 +636,7 @@ function App() {
         </label>
 
         <label>
-          Player one:{' '}
+          <span>Player one:</span>{' '}
           <input
             required
             type="text"
@@ -639,7 +646,7 @@ function App() {
         </label>
 
         <label>
-          Player two:{' '}
+          <span>Player two:</span>{' '}
           <input
             required
             type="text"
@@ -656,15 +663,18 @@ function App() {
           />
         </label>
 
-        <button style={{ padding: '.5em' }}>Start!</button>
+        <button>Start!</button>
       </form>
-      <p>
-        This game was inspired by{' '}
-        <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
-          Two Of These People Are Lying
-        </a>{' '}
-        by Tom Scott and Matt Grey.
-      </p>
+
+      <div className="app-footer">
+        <p>
+          This game was inspired by{' '}
+          <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
+            Two Of These People Are Lying
+          </a>{' '}
+          by Tom Scott and Matt Grey.
+        </p>
+      </div>
     </div>
   );
 }
