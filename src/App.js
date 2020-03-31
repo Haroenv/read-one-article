@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
-import raw from 'raw.macro';
+import React, { useState, useEffect, useReducer, useRef } from "react";
+import raw from "raw.macro";
 
 const numArticles = 2;
 
 function getMinContentLength(language) {
   switch (language) {
-    case 'simple': {
+    case "simple": {
       return 500;
     }
-    case 'en': {
+    case "en": {
       return 10_000;
     }
     default: {
@@ -41,7 +41,7 @@ function useRandomWikiArticles({
   minContentLength,
   length,
   language,
-  requestInvalidator,
+  requestInvalidator
 }) {
   const [loading, setLoading] = useState(false);
   const [randomArticles, setRandomArticles] = useState();
@@ -50,14 +50,14 @@ function useRandomWikiArticles({
   useEffect(() => {
     setLoading(true);
     const url = createWikiURL(language, {
-      format: 'json',
-      action: 'query',
-      generator: 'random',
-      prop: 'info',
-      inprop: 'url',
+      format: "json",
+      action: "query",
+      generator: "random",
+      prop: "info",
+      inprop: "url",
       grnlimit: 50,
       grnnamespace: 0,
-      origin: '*',
+      origin: "*"
     });
 
     fetch(url)
@@ -70,7 +70,7 @@ function useRandomWikiArticles({
               .filter(
                 page =>
                   page.length > minContentLength &&
-                  !page.title.startsWith('List of')
+                  !page.title.startsWith("List of")
               )
               .slice(0, length)
           );
@@ -93,7 +93,7 @@ function useRandomWikiArticles({
   return {
     loading,
     error,
-    randomArticles,
+    randomArticles
   };
 }
 
@@ -102,12 +102,12 @@ function WikipediaIframe({ article, language }) {
 
   useEffect(() => {
     const url = createWikiURL(language, {
-      format: 'json',
-      action: 'parse',
+      format: "json",
+      action: "parse",
       pageid: article.pageid,
       mobileformat: true,
-      prop: 'text',
-      origin: '*',
+      prop: "text",
+      origin: "*"
     });
 
     fetch(url)
@@ -117,19 +117,19 @@ function WikipediaIframe({ article, language }) {
           return;
         }
         const document = iframe.current.contentDocument;
-        const style = document.createElement('style');
-        style.innerHTML = raw('./wikipedia.css');
+        const style = document.createElement("style");
+        style.innerHTML = raw("./wikipedia.css");
         document.head.appendChild(style);
 
         document.body.innerHTML = `
           <base href="https://${language}.wikipedia.org" />
           <h1>${article.title}</h1>
           <div class="siteSub">From Wikipedia, the free encyclopedia</div>
-          ${res.parse.text['*']}`;
+          ${res.parse.text["*"]}`;
 
-        document.querySelectorAll('a').forEach(el =>
-          el.addEventListener('click', e => {
-            if (e.target.href[0] !== '#') {
+        document.querySelectorAll("a").forEach(el =>
+          el.addEventListener("click", e => {
+            if (e.target.href[0] !== "#") {
               e.preventDefault();
             }
           })
@@ -149,17 +149,17 @@ function WikipediaIframe({ article, language }) {
 function Share() {
   const [hasShareApi, setHasShareApi] = useState(
     // Safari's share API doesnt do social, so it's useless
-    'share' in navigator && navigator.platform !== 'MacIntel'
+    "share" in navigator && navigator.platform !== "MacIntel"
   );
   const [shared, setShared] = useState(false);
 
-  const shareTitle = 'Read One Article';
-  const shareText = 'I just played Read One Article by @haroenv';
+  const shareTitle = "Read One Article";
+  const shareText = "I just played Read One Article by @haroenv";
   const shareUrl = window.location.href;
 
-  const tweetUrl = new URL('https://twitter.com/intent/tweet');
-  tweetUrl.searchParams.set('url', shareUrl);
-  tweetUrl.searchParams.set('text', shareText);
+  const tweetUrl = new URL("https://twitter.com/intent/tweet");
+  tweetUrl.searchParams.set("url", shareUrl);
+  tweetUrl.searchParams.set("text", shareText);
 
   return (
     <>
@@ -178,7 +178,7 @@ function Share() {
               .share({
                 title: shareTitle,
                 text: shareText,
-                url: shareUrl,
+                url: shareUrl
               })
               .catch(() => setHasShareApi(null));
           }
@@ -202,23 +202,23 @@ function init({
   investigator,
   points,
   chosenArticles = [],
-  nonChosenArticles = [],
+  nonChosenArticles = []
 }) {
   return {
     liar,
     investigator,
     points,
-    stage: 'choosing',
+    stage: "choosing",
     chosenArticle: null,
     guessCorrect: false,
     chosenArticles,
-    nonChosenArticles,
+    nonChosenArticles
   };
 }
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'choose article': {
+    case "choose article": {
       const { article, allArticles } = action.payload;
       return {
         ...state,
@@ -227,61 +227,61 @@ function reducer(state, action) {
         nonChosenArticles: state.nonChosenArticles.concat(
           allArticles.filter(art => art !== article)
         ),
-        stage: 'reading',
+        stage: "reading"
       };
     }
-    case 'done reading': {
+    case "done reading": {
       return {
         ...state,
-        stage: 'preguessing',
+        stage: "preguessing"
       };
     }
-    case 'start guessing': {
+    case "start guessing": {
       return {
         ...state,
-        stage: 'guessing',
+        stage: "guessing"
       };
     }
-    case 'guess': {
+    case "guess": {
       const { chosenArticle, liar, investigator, points } = state;
       const guessCorrect = action.payload === chosenArticle;
 
       return {
         ...state,
-        stage: 'recap',
+        stage: "recap",
         guessCorrect,
         points: {
           [liar]: guessCorrect ? points[liar] : points[liar] + 1,
           [investigator]: guessCorrect
             ? points[investigator] + 1
-            : points[investigator],
-        },
+            : points[investigator]
+        }
       };
     }
-    case 'next round': {
+    case "next round": {
       const {
         investigator,
         liar,
         points,
         chosenArticles,
-        nonChosenArticles,
+        nonChosenArticles
       } = state;
       return init({
         liar: investigator,
         investigator: liar,
         points,
         chosenArticles,
-        nonChosenArticles,
+        nonChosenArticles
       });
     }
-    case 'finish': {
+    case "finish": {
       return {
         ...state,
-        stage: 'finish',
+        stage: "finish"
       };
     }
     default: {
-      throw new Error('wrong dispatch');
+      throw new Error("wrong dispatch");
     }
   }
 }
@@ -296,15 +296,15 @@ function TwoPlayerGame({ names, stop, language }) {
       guessCorrect,
       points,
       chosenArticles,
-      nonChosenArticles,
+      nonChosenArticles
     },
-    dispatch,
+    dispatch
   ] = useReducer(
     reducer,
     {
       liar: names[0],
       investigator: names[1],
-      points: Object.fromEntries(names.map(name => [name, 0])),
+      points: Object.fromEntries(names.map(name => [name, 0]))
     },
     init
   );
@@ -314,8 +314,8 @@ function TwoPlayerGame({ names, stop, language }) {
   const { loading, error, randomArticles } = useRandomWikiArticles({
     minContentLength: getMinContentLength(language),
     length: numArticles,
-    requestInvalidator: [liar, retryCount].join('~~~'),
-    language,
+    requestInvalidator: [liar, retryCount].join("~~~"),
+    language
   });
 
   if (loading) {
@@ -326,7 +326,7 @@ function TwoPlayerGame({ names, stop, language }) {
     return (
       <div className="full-center">
         <div>
-          <p>Error: {error?.message || 'no data'}</p>
+          <p>Error: {error?.message || "no data"}</p>
           <button type="button" onClick={() => retry()}>
             try again
           </button>
@@ -335,7 +335,7 @@ function TwoPlayerGame({ names, stop, language }) {
     );
   }
 
-  if (stage === 'choosing') {
+  if (stage === "choosing") {
     return (
       <div className="full-center">
         <div>
@@ -350,8 +350,8 @@ function TwoPlayerGame({ names, stop, language }) {
                   type="button"
                   onClick={() =>
                     dispatch({
-                      type: 'choose article',
-                      payload: { article, allArticles: randomArticles },
+                      type: "choose article",
+                      payload: { article, allArticles: randomArticles }
                     })
                   }
                 >
@@ -365,14 +365,14 @@ function TwoPlayerGame({ names, stop, language }) {
     );
   }
 
-  if (stage === 'reading') {
+  if (stage === "reading") {
     return (
       <div className="flex-column full-size">
         <WikipediaIframe article={chosenArticle} language={language} />
         <button
           className="done-reading"
           type="button"
-          onClick={() => dispatch({ type: 'done reading' })}
+          onClick={() => dispatch({ type: "done reading" })}
         >
           I'm done reading
         </button>
@@ -380,14 +380,14 @@ function TwoPlayerGame({ names, stop, language }) {
     );
   }
 
-  if (stage === 'preguessing') {
+  if (stage === "preguessing") {
     return (
       <div className="full-center">
         <div>
           <p>Please give the device to {investigator}</p>
           <button
             type="button"
-            onClick={() => dispatch({ type: 'start guessing' })}
+            onClick={() => dispatch({ type: "start guessing" })}
           >
             start guessing
           </button>
@@ -396,7 +396,7 @@ function TwoPlayerGame({ names, stop, language }) {
     );
   }
 
-  if (stage === 'guessing') {
+  if (stage === "guessing") {
     return (
       <div className="full-center">
         <div>
@@ -410,7 +410,7 @@ function TwoPlayerGame({ names, stop, language }) {
               <li key={article.pageid}>
                 <button
                   type="button"
-                  onClick={() => dispatch({ type: 'guess', payload: article })}
+                  onClick={() => dispatch({ type: "guess", payload: article })}
                 >
                   {article.title}
                 </button>
@@ -422,7 +422,7 @@ function TwoPlayerGame({ names, stop, language }) {
     );
   }
 
-  if (stage === 'recap') {
+  if (stage === "recap") {
     return (
       <div className="full-center">
         <div>
@@ -457,7 +457,7 @@ function TwoPlayerGame({ names, stop, language }) {
             <li>
               <button
                 type="button"
-                onClick={() => dispatch({ type: 'next round' })}
+                onClick={() => dispatch({ type: "next round" })}
               >
                 start next round
               </button>
@@ -466,7 +466,7 @@ function TwoPlayerGame({ names, stop, language }) {
               <button
                 className="danger"
                 type="button"
-                onClick={() => dispatch({ type: 'finish' })}
+                onClick={() => dispatch({ type: "finish" })}
               >
                 stop playing
               </button>
@@ -477,7 +477,7 @@ function TwoPlayerGame({ names, stop, language }) {
     );
   }
 
-  if (stage === 'finish') {
+  if (stage === "finish") {
     return (
       <div className="full-center">
         <div>
@@ -550,24 +550,24 @@ function App() {
   const [started, setStarted] = useState(false);
   const [nameOne, setNameOne] = useState();
   const [nameTwo, setNameTwo] = useState();
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState("en");
   const [languages, setLanguages] = useState([]);
 
   useEffect(() => {
-    const url = createWikiURL('en', {
-      action: 'query',
-      format: 'json',
-      prop: 'langlinks',
-      llprop: 'autonym',
-      titles: 'Main Page',
-      lllimit: '50',
-      origin: '*',
+    const url = createWikiURL("en", {
+      action: "query",
+      format: "json",
+      prop: "langlinks",
+      llprop: "autonym",
+      titles: "Main Page",
+      lllimit: "50",
+      origin: "*"
     });
 
     fetch(url)
       .then(res => res.json())
       .then(res => {
-        if (typeof res?.query?.pages === 'object') {
+        if (typeof res?.query?.pages === "object") {
           const mainPage = Object.values(res.query.pages)[0];
           if (Array.isArray(mainPage?.langlinks)) {
             setLanguages(
@@ -594,26 +594,31 @@ function App() {
 
   return (
     <div className="full-center">
-      <h1>Read One Article</h1>
-      <p>
-        In this game, there are two roles: the investigator and liar. Every
-        round you will swap between those roles. The liar will be presented with
-        two random Wikipedia pages. They will only be able to read one of those.
-      </p>
-      <p>
-        Then the investigator will see the titles of both pages, and given the
-        opportunity to ask any questions about both.
-      </p>
-      <p>Will the investigator find out which page the liar made up?</p>
+      <div className="app-header">
+        <h1>Read One Article</h1>
+      </div>
+      <div className="app-content">
+        <p>
+          In this game, there are two roles: the investigator and liar. Every
+          round you will swap between those roles. The liar will be presented
+          with two random Wikipedia pages. They will only be able to read one of
+          those.
+        </p>
+        <p>
+          Then the investigator will see the titles of both pages, and given the
+          opportunity to ask any questions about both.
+        </p>
+        <p>Will the investigator find out which page the liar made up?</p>
+      </div>
       <form
-        className="flex-column child-spacing"
+        className="app-form flex-column child-spacing"
         onSubmit={e => {
           e.preventDefault();
           start();
         }}
       >
         <label>
-          Language:{' '}
+          <span>Language:</span>{" "}
           <select
             className="language"
             value={language}
@@ -629,7 +634,7 @@ function App() {
         </label>
 
         <label>
-          Player one:{' '}
+          <span>Player one:</span>{" "}
           <input
             required
             type="text"
@@ -639,7 +644,7 @@ function App() {
         </label>
 
         <label>
-          Player two:{' '}
+          <span>Player two:</span>{" "}
           <input
             required
             type="text"
@@ -650,21 +655,23 @@ function App() {
               if (nameOne === e.target.value) {
                 e.target.setCustomValidity("Players can't have the same name");
               } else {
-                e.target.setCustomValidity('');
+                e.target.setCustomValidity("");
               }
             }}
           />
         </label>
 
-        <button style={{ padding: '.5em' }}>Start!</button>
+        <button style={{ padding: ".5em" }}>Start!</button>
       </form>
-      <p>
-        This game was inspired by{' '}
-        <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
-          Two Of These People Are Lying
-        </a>{' '}
-        by Tom Scott and Matt Grey.
-      </p>
+      <div className="app-footer">
+        <p>
+          This game was inspired by{" "}
+          <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
+            Two Of These People Are Lying
+          </a>{" "}
+          by Tom Scott and Matt Grey.
+        </p>
+      </div>
     </div>
   );
 }
