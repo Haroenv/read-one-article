@@ -597,6 +597,7 @@ function App() {
       <div className="app-header">
         <h1>Read One Article</h1>
       </div>
+
       <div className="app-content">
         <p>
           In this game, there are two roles: the investigator and liar. Every
@@ -610,6 +611,7 @@ function App() {
         </p>
         <p>Will the investigator find out which page the liar made up?</p>
       </div>
+
       <form
         className="app-form flex-column child-spacing"
         onSubmit={e => {
@@ -661,8 +663,9 @@ function App() {
           />
         </label>
 
-        <button style={{ padding: '.5em' }}>Start!</button>
+        <button>Start!</button>
       </form>
+
       <div className="app-footer">
         <p>
           This game was inspired by{' '}

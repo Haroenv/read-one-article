@@ -40,8 +40,10 @@ select {
   font: inherit;
 }
 
-select.language {
-  min-width: 15em;
+@media (min-width: 430px) {
+  select.language {
+    min-width: 20em;
+  }
 }
 
 button,
