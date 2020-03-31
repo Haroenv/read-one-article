@@ -4,12 +4,8 @@ body,
   height: 100%;
 }
 
-@media (max-height: 800px) {
-  html,
-  body,
-  #root {
-    height: unset;
-  }
+* {
+  box-sizing: border-box;
 }
 
 html {
@@ -17,8 +13,8 @@ html {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
+h1 {
+  font-family: 'Linux Libertine', Georgia, Times, serif;
 }
 
 body {

@@ -593,12 +593,12 @@ function App() {
   }
 
   return (
-    <div className="full-center">
-      <div className="app-header">
+    <div className="full-center intro">
+      <div className="intro-header">
         <h1>Read One Article</h1>
       </div>
 
-      <div className="app-content">
+      <div className="intro-content">
         <p>
           In this game, there are two roles: the investigator and liar. Every
           round you will swap between those roles. The liar will be presented
@@ -613,7 +613,7 @@ function App() {
       </div>
 
       <form
-        className="app-form flex-column child-spacing"
+        className="intro-form flex-column child-spacing"
         onSubmit={e => {
           e.preventDefault();
           start();
@@ -666,7 +666,7 @@ function App() {
         <button>Start!</button>
       </form>
 
-      <div className="app-footer">
+      <div className="intro-footer">
         <p>
           This game was inspired by{' '}
           <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
