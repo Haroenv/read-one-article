@@ -27,7 +27,7 @@ h1 {
 }
 
 body {
-  max-width: 60em;
+  max-width: 40em;
   margin: 0 auto;
   padding: 1em;
   text-align: center;
@@ -130,7 +130,7 @@ button:hover {
   border-bottom: none;
 }
 
-@media (max-width: 60em) {
+@media (max-width: 40em) {
   .done-reading {
     border-left: none;
     border-right: none;
