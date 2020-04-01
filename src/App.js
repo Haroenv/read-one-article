@@ -113,7 +113,7 @@ function WikipediaIframe({ article, language }) {
     fetch(url)
       .then(res => res.json())
       .then(res => {
-        if (!iframe) {
+        if (!iframe || !iframe.current) {
           return;
         }
         const document = iframe.current.contentDocument;
