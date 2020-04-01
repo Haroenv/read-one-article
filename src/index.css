@@ -161,8 +161,3 @@ a:visited {
   justify-content: center;
   align-items: center;
 }
-
-hr {
-  border: none;
-  border-top: 1px solid currentColor;
-}
