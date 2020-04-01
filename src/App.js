@@ -417,6 +417,11 @@ function TwoPlayerGame({ names, stop, language }) {
               </li>
             ))}
           </ul>
+          <p>Here's a scratchpad to leave your notes:</p>
+          <textarea
+            rows={5}
+            placeholder="Interesting detail they knew, did they just read that? Or is it coincidence… Write it down to remember."
+          />
         </div>
       </div>
     );
