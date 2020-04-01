@@ -129,7 +129,8 @@ function WikipediaIframe({ article, language }) {
 
         document.querySelectorAll('a').forEach(el =>
           el.addEventListener('click', e => {
-            if (e.target.href[0] !== '#') {
+            const target = e.currentTarget || e.target;
+            if (target.href[0] !== '#') {
               e.preventDefault();
             }
           })
