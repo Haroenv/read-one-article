@@ -391,7 +391,9 @@ function TwoPlayerGame({ names, stop, language }) {
                     })
                   }
                 >
-                  <Trans i18n="game.article">Article {{ number: i + 1 }}</Trans>
+                  <Trans i18nKey="game.article">
+                    Article {{ number: i + 1 }}
+                  </Trans>
                 </button>
               </li>
             ))}
