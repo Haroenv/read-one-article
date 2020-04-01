@@ -485,7 +485,7 @@ function TwoPlayerGame({ names, stop, language }) {
               </Trans>
             )}
           </p>
-          <p>read the articles:</p>
+          <p>{t('game.read-articles')}</p>
           <ul className="box-list">
             {randomArticles.map(article => (
               <li key={article.pageid}>

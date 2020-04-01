@@ -25,6 +25,7 @@
     "scratchpad-tips": "Interesting detail they knew, did they just read that? Or is it coincidence… Write it down to remember.",
     "investigator-won": "The investigator, {{ investigator }} won! {{ liar }} did read about {{ title }}",
     "liar-won": "The liar, {{ liar }} won! {{ liar }} actually read about {{ title }}",
+    "read-articles": "read the articles: ",
     "start-next": "start next round",
     "stop-playing": "stop playing",
     "final-score": "The final score is:",

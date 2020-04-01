@@ -25,6 +25,7 @@
     "scratchpad-tips": "Dat was een interessant detail ze zeiden, hebben ze dat net gelezen? Of is het toeval… Schrijf het neer om het te onthouden.",
     "investigator-won": "De onderzoeker, {{ investigator }} is gewonnen! {{ liar }} heeft inderdaad over {{ title }} gelezen.",
     "liar-won": "De leugenaar, {{ liar }} is gewonnen! {{ liar }} heeft eigenlijk over {{ title}} gelezen.",
+    "read-articles": "lees de artikels: ",
     "start-next": "start volgende ronde",
     "stop-playing": "stop spelen",
     "final-score": "De eindscore is:",
