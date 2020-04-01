@@ -56,7 +56,7 @@ button,
   border-radius: 0.2em;
   border: 1px solid var(--c-grey-200);
   background: white;
-  color: inherit;
+  color: inherit !important;
   padding: 1em;
   margin: auto;
   cursor: pointer;
