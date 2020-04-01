@@ -53,6 +53,8 @@ textarea {
 
 button,
 .box-list a {
+  border-radius: 0.2em;
+  border: 1px solid var(--c-grey-200);
   background: white;
   color: inherit;
   padding: 1em;
