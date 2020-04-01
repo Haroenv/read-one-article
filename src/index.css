@@ -14,12 +14,21 @@ html {
 
   --c-grey-100: #f8f9fa;
   --c-grey-200: #a2a9b1;
+  --c-grey-900: #1f2429;
 
   --c-blue-100: #0645ad;
   --c-blue-200: #0b0080;
 
   --c-red-100: #ffebeb;
   --c-red-200: #ffa7a7;
+  --c-red-300: #fa7979;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color: var(--c-grey-100);
+    background-color: var(--c-grey-900);
+  }
 }
 
 h1 {
@@ -63,16 +72,24 @@ button,
   display: block;
 }
 
-button:hover {
+button:hover,
+.box-list a {
   background: var(--c-grey-100);
 }
 
+@media (prefers-color-scheme: dark) {
+  button:hover,
+  .box-list a {
+    background: var(--c-grey-200);
+  }
+}
+
 .danger {
-  background: var(--c-red-100);
+  background: var(--c-red-200);
 }
 
 .danger:hover {
-  background: var(--c-red-200);
+  background: var(--c-red-300);
 }
 
 .flex-column {
@@ -128,15 +145,10 @@ button:hover {
 .done-reading {
   width: 100%;
   font-size: 2em;
+  border: none;
+  border-top: 1px solid;
   border-radius: 0;
   border-bottom: none;
-}
-
-@media (max-width: 40em) {
-  .done-reading {
-    border-left: none;
-    border-right: none;
-  }
 }
 
 a {
@@ -152,6 +164,14 @@ a:focus {
 
 a:visited {
   color: var(--c-blue-200);
+}
+
+@media (prefers-color-scheme: dark) {
+  a,
+  a:visited {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
 
 .full-center {

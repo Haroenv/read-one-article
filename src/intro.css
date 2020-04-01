@@ -34,3 +34,9 @@
   margin: 0;
   text-align: center;
 }
+
+@media (prefers-color-scheme: dark) {
+  .intro-form button {
+    background-color: var(--c-grey-200);
+  }
+}
