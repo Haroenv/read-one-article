@@ -1,0 +1,40 @@
+{
+  "intro": {
+    "text": [
+      "In this game, there are two roles: the investigator and liar. Every round you will swap between those roles. ",
+      "The liar will be presented with two random Wikipedia pages. They will only be able to read one of those.",
+      "Then the investigator will see the titles of both pages, and given the opportunity to ask any questions about both.",
+      "Will the investigator find out which page the liar made up?"
+    ],
+    "language": "<0>language: </0>",
+    "player-one": "<0>player one: </0>",
+    "player-two": "<0>player two: </0>",
+    "player-identical": "Players can't have the same name",
+    "start": "Start!",
+    "footer": "This game was inspired by <2>Two Of These People Are Lying</2> by Tom Scott and Matt Grey."
+  },
+  "game": {
+    "try-again": "try again",
+    "choosing": "It is now the turn of the liar ({{liar}}). To read up on one topic, please pick one of these articles:",
+    "article": "Article {{number}}",
+    "done-reading": "I'm done reading",
+    "preguessing": "Please give the device to {{investigator}}",
+    "start-guessing": "start guessing",
+    "guessing": "It is now the turn of the investigator ({{investigator}}). You now can ask questions about all these articles. Once you think you know which article the person read, make a guess!",
+    "scratchpad": "Here's a scratchpad to leave your notes: ",
+    "scratchpad-tips": "Interesting detail they knew, did they just read that? Or is it coincidence… Write it down to remember.",
+    "investigator-won": "The investigator, {{ investigator }} won! {{ liar }} did read about {{ title }}",
+    "liar-won": "The liar, {{ liar }} won! {{ liar }} actually read about {{ title }}",
+    "start-next": "start next round",
+    "stop-playing": "stop playing",
+    "final-score": "The final score is:",
+    "did-read": "The articles you read about were:",
+    "didnt-read": "The articles you didn't read about were:",
+    "contribute": "contribute",
+    "new-game": "new game",
+    "error": "Error: game stage doesn't exist"
+  },
+  "loading…": "loading…",
+  "from-wikipedia": "From Wikipedia, the free encyclopedia",
+  "tweet-text": "I just played Read One Article by @haroenv"
+}

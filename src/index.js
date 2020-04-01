@@ -4,5 +4,6 @@ import './index.css';
 import './html.css';
 import './intro.css';
 import App from './App';
+import './i18n';
 
 ReactDOM.render(<App />, document.getElementById('root'));

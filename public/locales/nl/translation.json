@@ -1,0 +1,40 @@
+{
+  "intro": {
+    "text": [
+      "In dit spel zijn er twee rollen: de onderzoeker en de leugenaar. Elke ronde verwissel je tussen deze rollen",
+      "De leugenaar krijgt twee willekeurige Wikipedia-pagina's, maar ze kunnen er slechts één bekijken.",
+      "De onderzoeker kan dan naar beide titels kijken, en stelt vragen over beide artikels.",
+      "Zal de onderzoeker vinden welke pagina verzonnen is?"
+    ],
+    "language": "<0>taal: </0>",
+    "player-one": "<0>speler een: </0>",
+    "player-two": "<0>speler twee: </0>",
+    "player-identical": "Spelers kunnen niet dezelfde naam hebben",
+    "start": "Start!",
+    "footer": "Dit spel is geïnspireerd door <2>Two Of These People Are Lying</2>, door Tom Scott and Matt Grey."
+  },
+  "game": {
+    "try-again": "probeer opnieuw",
+    "choosing": "Het is nu de beurt aan de leugenaar ({{liar}}). Kies één van deze twee artikels om meer over te lezen: ",
+    "article": "Artikel {{number}}",
+    "done-reading": "Ik ben klaar met lezen",
+    "preguessing": "Geef het toestel aan {{investigator}}",
+    "start-guessing": "start raden",
+    "guessing": "Het is nu de beurt aan de onderzoeker ({{investigator}}). Je kan vragen stellen over deze artikels. Zodra je weet welk artikel verzonnen is, maak je je keuze!",
+    "scratchpad": "Hier is een plaats om je notities te laten",
+    "scratchpad-tips": "Dat was een interessant detail ze zeiden, hebben ze dat net gelezen? Of is het toeval… Schrijf het neer om het te onthouden.",
+    "investigator-won": "De onderzoeker, {{ investigator }} is gewonnen! {{ liar }} heeft inderdaad over {{ title }} gelezen.",
+    "liar-won": "De leugenaar, {{ liar }} is gewonnen! {{ liar }} heeft eigenlijk over {{ title}} gelezen.",
+    "start-next": "start volgende ronde",
+    "stop-playing": "stop spelen",
+    "final-score": "De eindscore is:",
+    "did-read": "De artikels waarover jullie gelezen hebben zijn:",
+    "didnt-read": "De artikels waarover jullie niet gelezen hebben zijn:",
+    "contribute": "broncode",
+    "new-game": "nieuw spel",
+    "error": "Fout: deze stage van het spel bestaat niet"
+  },
+  "loading…": "laden…",
+  "from-wikipedia": "Uit Wikipedia, de vrije encyclopedie",
+  "tweet-text": "Ik heb net Read One Article door @haroenv gespeeld"
+}

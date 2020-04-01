@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+  useRef,
+  Suspense,
+} from 'react';
+import { useTranslation, Trans } from 'react-i18next';
 import raw from 'raw.macro';
 
 const numArticles = 2;
@@ -98,6 +105,7 @@ function useRandomWikiArticles({
 }
 
 function WikipediaIframe({ article, language }) {
+  const { t } = useTranslation();
   const iframe = useRef();
 
   useEffect(() => {
@@ -124,7 +132,7 @@ function WikipediaIframe({ article, language }) {
         document.body.innerHTML = `
           <base href="https://${language}.wikipedia.org" />
           <h1>${article.title}</h1>
-          <div class="siteSub">From Wikipedia, the free encyclopedia</div>
+          <div class="siteSub">${t('from-wikipedia')}</div>
           ${res.parse.text['*']}`;
 
         document.querySelectorAll('a').forEach(el =>
@@ -136,7 +144,7 @@ function WikipediaIframe({ article, language }) {
           })
         );
       });
-  }, [article.pageid, article.title, language]);
+  }, [article.pageid, article.title, language, t]);
 
   return (
     <iframe
@@ -148,6 +156,7 @@ function WikipediaIframe({ article, language }) {
 }
 
 function Share() {
+  const { t } = useTranslation();
   const [hasShareApi, setHasShareApi] = useState(
     // Safari's share API doesnt do social, so it's useless
     'share' in navigator && navigator.platform !== 'MacIntel'
@@ -155,7 +164,7 @@ function Share() {
   const [shared, setShared] = useState(false);
 
   const shareTitle = 'Read One Article';
-  const shareText = 'I just played Read One Article by @haroenv';
+  const shareText = t('tweet-text');
   const shareUrl = window.location.href;
 
   const tweetUrl = new URL('https://twitter.com/intent/tweet');
@@ -189,6 +198,30 @@ function Share() {
       </a>
     </>
   );
+}
+
+function Loading({ children = 'loading…' }) {
+  const [showText, setShowText] = useState(false);
+
+  useEffect(() => {
+    let visible = true;
+
+    setTimeout(() => {
+      if (visible) {
+        setShowText(true);
+      }
+    }, 200);
+
+    return () => {
+      visible = false;
+    };
+  });
+
+  if (!showText) {
+    return null;
+  }
+
+  return <div className="full-center">{children}</div>;
 }
 
 // stage:
@@ -309,7 +342,7 @@ function TwoPlayerGame({ names, stop, language }) {
     },
     init
   );
-
+  const { t } = useTranslation();
   const [retryCount, setRetryCount] = useState(0);
   const retry = () => setRetryCount(count => count + 1);
   const { loading, error, randomArticles } = useRandomWikiArticles({
@@ -320,7 +353,7 @@ function TwoPlayerGame({ names, stop, language }) {
   });
 
   if (loading) {
-    return <div className="full-center">loading…</div>;
+    return <Loading>{t('loading…')}</Loading>;
   }
 
   if (error || !randomArticles || randomArticles.length < numArticles) {
@@ -329,7 +362,7 @@ function TwoPlayerGame({ names, stop, language }) {
         <div>
           <p>Error: {error?.message || 'no data'}</p>
           <button type="button" onClick={() => retry()}>
-            try again
+            {t('game.try-again')}
           </button>
         </div>
       </div>
@@ -341,8 +374,10 @@ function TwoPlayerGame({ names, stop, language }) {
       <div className="full-center">
         <div>
           <p>
-            It is now the turn of the liar ({liar}). To read up on one topic,
-            please pick one of these articles:
+            <Trans i18nKey="game.choosing">
+              It is now the turn of the liar ({{ liar }}). To read up on one
+              topic, please pick one of these articles:
+            </Trans>
           </p>
           <ul className="box-list">
             {shuffle(randomArticles).map((article, i) => (
@@ -356,7 +391,7 @@ function TwoPlayerGame({ names, stop, language }) {
                     })
                   }
                 >
-                  Article {i + 1}
+                  <Trans i18n="game.article">Article {{ number: i + 1 }}</Trans>
                 </button>
               </li>
             ))}
@@ -375,7 +410,7 @@ function TwoPlayerGame({ names, stop, language }) {
           type="button"
           onClick={() => dispatch({ type: 'done reading' })}
         >
-          I'm done reading
+          {t('game.done-reading')}
         </button>
       </div>
     );
@@ -385,12 +420,16 @@ function TwoPlayerGame({ names, stop, language }) {
     return (
       <div className="full-center">
         <div>
-          <p>Please give the device to {investigator}</p>
+          <p>
+            <Trans i18nKey="game.preguessing">
+              Please give the device to {{ investigator }}
+            </Trans>
+          </p>
           <button
             type="button"
             onClick={() => dispatch({ type: 'start guessing' })}
           >
-            start guessing
+            {t('game.start-guessing')}
           </button>
         </div>
       </div>
@@ -402,9 +441,11 @@ function TwoPlayerGame({ names, stop, language }) {
       <div className="full-center">
         <div>
           <p>
-            It is now the turn of the investigator ({investigator}). You now can
-            ask questions about all these articles. Once you think you know
-            which article the person read, make a guess!
+            <Trans i18nKey="game.guessing">
+              It is now the turn of the investigator ({{ investigator }}). You
+              now can ask questions about all these articles. Once you think you
+              know which article the person read, make a guess!
+            </Trans>
           </p>
           <ul className="box-list">
             {randomArticles.map(article => (
@@ -418,11 +459,8 @@ function TwoPlayerGame({ names, stop, language }) {
               </li>
             ))}
           </ul>
-          <p>Here's a scratchpad to leave your notes:</p>
-          <textarea
-            rows={5}
-            placeholder="Interesting detail they knew, did they just read that? Or is it coincidence… Write it down to remember."
-          />
+          <p>{t('game.scratchpad')}</p>
+          <textarea rows={5} placeholder={t('game.scratchpad-tips')} />
         </div>
       </div>
     );
@@ -433,9 +471,17 @@ function TwoPlayerGame({ names, stop, language }) {
       <div className="full-center">
         <div>
           <p>
-            {guessCorrect
-              ? `The investigator, ${investigator} won! ${liar} did read about ${chosenArticle.title}`
-              : `The liar, ${liar} won! ${liar} actually read about ${chosenArticle.title}`}
+            {guessCorrect ? (
+              <Trans i18nKey="game.investigator-won">
+                The investigator, {{ investigator }} won! {{ liar }} did read
+                about {{ title: chosenArticle.title }}
+              </Trans>
+            ) : (
+              <Trans i18nKey="game.liar-won">
+                The liar, {{ liar }} won! {{ liar }} actually read about{' '}
+                {{ title: chosenArticle.title }}
+              </Trans>
+            )}
           </p>
           <p>read the articles:</p>
           <ul className="box-list">
@@ -465,7 +511,7 @@ function TwoPlayerGame({ names, stop, language }) {
                 type="button"
                 onClick={() => dispatch({ type: 'next round' })}
               >
-                start next round
+                {t('game.start-next')}
               </button>
             </li>
             <li>
@@ -474,7 +520,7 @@ function TwoPlayerGame({ names, stop, language }) {
                 type="button"
                 onClick={() => dispatch({ type: 'finish' })}
               >
-                stop playing
+                {t('game.stop-playing')}
               </button>
             </li>
           </ul>
@@ -487,7 +533,7 @@ function TwoPlayerGame({ names, stop, language }) {
     return (
       <div className="full-center">
         <div>
-          <p>The final score is:</p>
+          <p>{t('game.final-score')}</p>
           <ul className="scores-list">
             {Object.entries(points).map(([name, score]) => (
               <li key={name}>
@@ -495,7 +541,7 @@ function TwoPlayerGame({ names, stop, language }) {
               </li>
             ))}
           </ul>
-          <p>The articles you read about were:</p>
+          <p>{t('game.did-read')}</p>
           <ul className="box-list vertical">
             {chosenArticles.map(article => (
               <li key={article.pageid}>
@@ -510,7 +556,7 @@ function TwoPlayerGame({ names, stop, language }) {
             ))}
           </ul>
           <hr />
-          <p>The articles you didn't read about were:</p>
+          <p>{t('game.didnt-read')}</p>
           <ul className="box-list vertical">
             {nonChosenArticles.map(article => (
               <li key={article.pageid}>
@@ -535,12 +581,12 @@ function TwoPlayerGame({ names, stop, language }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Contribute
+                {t('game.contribute')}
               </a>
             </li>
             <li>
               <button type="button" onClick={() => stop()}>
-                new game
+                {t('game.new-game')}
               </button>
             </li>
           </ul>
@@ -549,10 +595,12 @@ function TwoPlayerGame({ names, stop, language }) {
     );
   }
 
-  return "Error: game stage doesn't exist";
+  return t('game.error');
 }
 
 function App() {
+  const { t, i18n } = useTranslation();
+
   const [started, setStarted] = useState(false);
   const [nameOne, setNameOne] = useState();
   const [nameTwo, setNameTwo] = useState();
@@ -605,17 +653,9 @@ function App() {
       </div>
 
       <div className="intro-content">
-        <p>
-          In this game, there are two roles: the investigator and liar. Every
-          round you will swap between those roles. The liar will be presented
-          with two random Wikipedia pages. They will only be able to read one of
-          those.
-        </p>
-        <p>
-          Then the investigator will see the titles of both pages, and given the
-          opportunity to ask any questions about both.
-        </p>
-        <p>Will the investigator find out which page the liar made up?</p>
+        {t('intro.text', { returnObjects: true }).map((paragraph, i) => (
+          <p key={i}>{paragraph}</p>
+        ))}
       </div>
 
       <form
@@ -626,11 +666,16 @@ function App() {
         }}
       >
         <label>
-          <span>Language:</span>{' '}
+          <Trans i18nKey="intro.language">
+            <span>Language: </span>
+          </Trans>
           <select
             className="language"
             value={language}
-            onChange={e => setLanguage(e.target.value)}
+            onChange={e => {
+              setLanguage(e.target.value);
+              i18n.changeLanguage(e.target.value);
+            }}
           >
             <option value="en">English</option>
             {languages.map(({ lang, autonym }) => (
@@ -642,7 +687,9 @@ function App() {
         </label>
 
         <label>
-          <span>Player one:</span>{' '}
+          <Trans i18nKey="intro.player-one">
+            <span>Player one: </span>
+          </Trans>
           <input
             required
             type="text"
@@ -652,7 +699,9 @@ function App() {
         </label>
 
         <label>
-          <span>Player two:</span>{' '}
+          <Trans i18nKey="intro.player-two">
+            <span>Player two: </span>
+          </Trans>
           <input
             required
             type="text"
@@ -661,7 +710,7 @@ function App() {
               setNameTwo(e.target.value);
 
               if (nameOne === e.target.value) {
-                e.target.setCustomValidity("Players can't have the same name");
+                e.target.setCustomValidity(t('intro.player-identical'));
               } else {
                 e.target.setCustomValidity('');
               }
@@ -669,20 +718,30 @@ function App() {
           />
         </label>
 
-        <button>Start!</button>
+        <button>{t('intro.start')}</button>
       </form>
 
       <div className="intro-footer">
         <p>
-          This game was inspired by{' '}
-          <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
-            Two Of These People Are Lying
-          </a>{' '}
-          by Tom Scott and Matt Grey.
+          <Trans i18nKey="intro.footer">
+            This game was inspired by{' '}
+            <a href="https://www.youtube.com/playlist?list=PLfx61sxf1Yz2I-c7eMRk9wBUUDCJkU7H0">
+              Two Of These People Are Lying
+            </a>{' '}
+            by Tom Scott and Matt Grey.
+          </Trans>
         </p>
       </div>
     </div>
   );
 }
 
-export default App;
+function Wrapper() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <App />
+    </Suspense>
+  );
+}
+
+export default Wrapper;
