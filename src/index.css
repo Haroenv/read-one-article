@@ -14,6 +14,12 @@ html {
 
   --c-grey-100: #f8f9fa;
   --c-grey-200: #a2a9b1;
+
+  --c-blue-100: #0645ad;
+  --c-blue-200: #0b0080;
+
+  --c-red-100: #ffebeb;
+  --c-red-200: #ffa7a7;
 }
 
 h1 {
@@ -77,11 +83,11 @@ button:hover {
 }
 
 .danger {
-  background: #ffebeb;
+  background: var(--c-red-100);
 }
 
 .danger:hover {
-  background: #ffa7a7;
+  background: var(--c-red-200);
 }
 
 .flex-column {
@@ -150,7 +156,7 @@ button:hover {
 
 a {
   text-decoration: none;
-  color: #0645ad;
+  color: var(--c-blue-100);
   background: none;
 }
 
@@ -160,7 +166,7 @@ a:focus {
 }
 
 a:visited {
-  color: #0b0080;
+  color: var(--c-blue-200);
 }
 
 .full-center {
