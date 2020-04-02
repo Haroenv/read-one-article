@@ -25,7 +25,9 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
+  html,
+  /* something causes option on Windows to stay white, even with `inherit` */
+  option {
     color: var(--c-grey-100);
     background-color: var(--c-grey-900);
   }
