@@ -25,7 +25,9 @@ html {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
+  html,
+  /* bugfix for windows */
+  select option {
     color: var(--c-grey-100);
     background-color: var(--c-grey-900);
   }

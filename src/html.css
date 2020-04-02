@@ -46,12 +46,6 @@ textarea {
   background-color: inherit;
 }
 
-/* windows dark mode doesn't change its select background, but does inherit color */
-option {
-  color: unset;
-  background-color: unset;
-}
-
 textarea {
   resize: vertical;
   line-height: 1.6;
