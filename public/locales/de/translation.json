@@ -27,7 +27,7 @@
     "liar-won": "Die lügende Person, {{ liar }} hat gewonnen! {{ liar }} hat eigentlich {{ title }} gelesen",
     "read-articles": "Lies die Artikel: ",
     "start-next": "nächste Runde starten",
-    "score": "Punkte",
+    "scores": "Punkten",
     "stop-playing": "Spiel beenden",
     "final-score": "Der Punktestand ist:",
     "did-read": "Die Artikel die ihr gelesen habt waren:",

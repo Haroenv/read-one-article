@@ -499,7 +499,7 @@ function TwoPlayerGame({ names, stop, language }) {
               </li>
             ))}
           </ul>
-          <p>{t('game.score')}:</p>
+          <p>{t('game.scores')}:</p>
           <ul className="scores-list">
             {Object.entries(points).map(([name, score]) => (
               <li key={name}>
