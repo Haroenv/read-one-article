@@ -40,11 +40,16 @@ iframe {
 input,
 button,
 select,
-option,
 textarea {
   font: inherit;
   color: inherit;
   background-color: inherit;
+}
+
+/* windows dark mode doesn't change its select background, but does inherit color */
+option {
+  color: unset;
+  background-color: unset;
 }
 
 textarea {
