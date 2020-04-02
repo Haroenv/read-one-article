@@ -606,7 +606,6 @@ function App() {
   const [started, setStarted] = useState(false);
   const [nameOne, setNameOne] = useState();
   const [nameTwo, setNameTwo] = useState();
-  const [language, setLanguage] = useState('en');
   const [languages, setLanguages] = useState([]);
 
   useEffect(() => {
@@ -643,7 +642,7 @@ function App() {
       <TwoPlayerGame
         names={[nameOne, nameTwo]}
         stop={stop}
-        language={language}
+        language={i18n.language}
       />
     );
   }
@@ -673,9 +672,8 @@ function App() {
           </Trans>
           <select
             className="language"
-            value={language}
+            value={i18n.language}
             onChange={e => {
-              setLanguage(e.target.value);
               i18n.changeLanguage(e.target.value);
             }}
           >
