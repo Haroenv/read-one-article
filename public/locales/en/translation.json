@@ -27,10 +27,12 @@
     "liar-won": "The liar, {{ liar }} won! {{ liar }} actually read about {{ title }}",
     "read-articles": "read the articles: ",
     "start-next": "start next round",
+    "scores": "scores",
     "stop-playing": "stop playing",
     "final-score": "The final score is:",
     "did-read": "The articles you read about were:",
     "didnt-read": "The articles you didn't read about were:",
+    "share": "share",
     "contribute": "contribute",
     "new-game": "new game",
     "error": "Error: game stage doesn't exist"
