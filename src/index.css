@@ -85,11 +85,21 @@ button:hover,
 }
 
 .danger {
-  background: var(--c-red-200);
+  background: var(--c-red-100);
 }
 
 .danger:hover {
-  background: var(--c-red-300);
+  background: var(--c-red-200);
+}
+
+@media (prefers-color-scheme: dark) {
+  .danger {
+    background: var(--c-red-200);
+  }
+
+  .danger:hover {
+    background: var(--c-red-300);
+  }
 }
 
 .flex-column {
