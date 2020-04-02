@@ -114,16 +114,29 @@ a:visited {
   float: right;
 }
 
-.thumbinner {
-  border: 1px solid var(--c-grey-200);
-  padding: 3px;
+.gallery {
+  list-style-type: none;
+  padding: 0;
+}
+
+.gallerybox,
+.gallery li {
+  display: inline-block;
+}
+
+.thumb {
   background-color: var(--c-grey-100);
-  font-size: 94%;
+  border: 1px solid var(--c-grey-200);
   text-align: center;
 }
 
 @media (prefers-color-scheme: dark) {
-  .thumbinner {
+  .thumb {
     background-color: inherit;
   }
+}
+
+.thumbinner {
+  padding: 3px;
+  font-size: 94%;
 }
