@@ -27,10 +27,12 @@
     "liar-won": "De leugenaar, {{ liar }} is gewonnen! {{ liar }} heeft eigenlijk over {{ title}} gelezen.",
     "read-articles": "lees de artikels: ",
     "start-next": "start volgende ronde",
+    "score": "score",
     "stop-playing": "stop spelen",
     "final-score": "De eindscore is:",
     "did-read": "De artikels waarover jullie gelezen hebben zijn:",
     "didnt-read": "De artikels waarover jullie niet gelezen hebben zijn:",
+    "share": "delen",
     "contribute": "broncode",
     "new-game": "nieuw spel",
     "error": "Fout: deze stage van het spel bestaat niet"
