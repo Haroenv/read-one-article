@@ -6,9 +6,9 @@
       "Then the investigator will see the titles of both pages, and given the opportunity to ask any questions about both.",
       "Will the investigator find out which page the liar made up?"
     ],
-    "language": "<0>language: </0>",
-    "player-one": "<0>player one: </0>",
-    "player-two": "<0>player two: </0>",
+    "language": "language: ",
+    "player-one": "player one: ",
+    "player-two": "player two: ",
     "player-identical": "Players can't have the same name",
     "start": "Start!",
     "footer": "This game was inspired by <2>Two Of These People Are Lying</2> by Tom Scott and Matt Grey."

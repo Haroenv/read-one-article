@@ -6,9 +6,9 @@
       "De onderzoeker kan dan naar beide titels kijken, en stelt vragen over beide artikels.",
       "Zal de onderzoeker vinden welke pagina verzonnen is?"
     ],
-    "language": "<0>taal: </0>",
-    "player-one": "<0>speler een: </0>",
-    "player-two": "<0>speler twee: </0>",
+    "language": "taal: ",
+    "player-one": "speler een: ",
+    "player-two": "speler twee: ",
     "player-identical": "Spelers kunnen niet dezelfde naam hebben",
     "start": "Start!",
     "footer": "Dit spel is geïnspireerd door <2>Two Of These People Are Lying</2>, door Tom Scott and Matt Grey."

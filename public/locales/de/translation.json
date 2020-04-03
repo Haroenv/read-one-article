@@ -6,9 +6,9 @@
       "Die ermittelnden Person sieht die Titel beider Artikel und bekommt die Möglichkeit, Fragen zu den Artikeln zu stellen.",
       "Wird die ermittelnde Person herausfinden, welchen Artikel sich die lügende Person ausgedacht hat?"
     ],
-    "language": "<0>Sprache: </0>",
-    "player-one": "<0>Spieler eins: </0>",
-    "player-two": "<0>Spieler zwei: </0>",
+    "language": "Sprache: ",
+    "player-one": "Spieler eins: ",
+    "player-two": "Spieler zwei: ",
     "player-identical": "Spieler können nicht den gleichen Namen haben!",
     "start": "Start!",
     "footer": "Dieses Spiel wurde inspiriert von <2>Two Of These People Are Lying</2> von Tom Scott und Matt Grey."

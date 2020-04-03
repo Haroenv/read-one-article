@@ -667,9 +667,7 @@ function App() {
         }}
       >
         <label>
-          <Trans i18nKey="intro.language">
-            <span>Language: </span>
-          </Trans>
+          <span>{t('intro.language')}</span>
           <select
             className="language"
             value={i18n.language}
@@ -687,9 +685,7 @@ function App() {
         </label>
 
         <label>
-          <Trans i18nKey="intro.player-one">
-            <span>Player one: </span>
-          </Trans>
+          <span>{t('intro.player-one')}</span>
           <input
             required
             type="text"
@@ -699,9 +695,7 @@ function App() {
         </label>
 
         <label>
-          <Trans i18nKey="intro.player-two">
-            <span>Player two: </span>
-          </Trans>
+          <span>{t('intro.player-two')}</span>
           <input
             required
             type="text"

@@ -6,9 +6,9 @@
       "Ensuite, le détective verra le titre des deux pages, et aura l'opportunité de poser n'importe quelle question à propos des deux pages.",
       "Est-ce que le détective pourra trouver laquelle de ces deux pages le menteur a inventé?"
     ],
-    "language": "<0>language : </0>",
-    "player-one": "<0>premier joueur : </0>",
-    "player-two": "<0>deuxième joueur : </0>",
+    "language": "language : ",
+    "player-one": "premier joueur : ",
+    "player-two": "deuxième joueur : ",
     "player-identical": "Les joueurs ne peuvent pas avoir le même nom",
     "start": "Commencer!",
     "footer": "Ce jeu a été inspiré par <2>Two Of These People Are Lying</2> de Tom Scott et Matt Grey."
