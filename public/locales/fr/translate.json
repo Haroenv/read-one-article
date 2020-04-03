@@ -15,7 +15,7 @@
   },
   "game": {
     "try-again": "essayez encore",
-    "choosing": "C'est maintenant au tour du menteur ({{liar}}). de lire a propos des deux sujets, s'il vous plaît, choisissez l'un des deux articles:",
+    "choosing": "C'est maintenant au tour du menteur ({{liar}}) de lire a propos des deux sujets, s'il vous plaît, choisissez l'un des deux articles:",
     "article": "Article {{number}}",
     "done-reading": "J'ai fini de lire",
     "preguessing": "S'il vous plaît, veuillez donner l'appareil à {{investigator}}",
