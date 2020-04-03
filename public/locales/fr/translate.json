@@ -1,0 +1,43 @@
+{
+  "intro": {
+    "text": [
+      "Dans ce jeu, il y a deux rôles: le détéctive et le menteur. A chaque tours, vous allez alterner entree ces deux rôles.",
+      "Le menteur aura deux articles Wikipedia au hasard qui lui seront présenté. Il ne lui sera permi de n'en lire qu'un seul.",
+      "Ensuite, le détéctive verra le titre des deux pages, et aura l'opportunité de poser n'importe quelle question à propos des deux pages.",
+      "Est-ce que le détéctive pourra trouver laquelle de ces deux pages le menteur a inventé?"
+    ],
+    "language": "<0>language: </0>",
+    "player-one": "<0>Premier joueur: </0>",
+    "player-two": "<0>Second joueur: </0>",
+    "player-identical": "Les joueurs ne peuvent pas avoir le même nom",
+    "start": "Commencer!",
+    "footer": "Ce jeu a été inspiré par <2>Two Of These People Are Lying</2> de Tom Scott et Matt Grey."
+  },
+  "game": {
+    "try-again": "essayez encore",
+    "choosing": "C'est maintenant au tour du menteur ({{liar}}). de lire a propos des deux sujets, s'il vous plaît, choisissez l'un des deux articles:",
+    "article": "Article {{number}}",
+    "done-reading": "J'ai fini de lire",
+    "preguessing": "S'il vous plaît, veuillez donner l'appareil à {{investigator}}",
+    "start-guessing": "Commencez à deviner",
+    "guessing": "C'est maintenant au tout du détéctive ({{investigator}}). Vous pouvez maintenant poser des questions à propos de ces articles. Une fois que vous pensez que vous avez trouvé quel article la personne a lu, faites une proposition!",
+    "scratchpad": "Voici un bloc-notes pour laisser vos notes: ",
+    "scratchpad-tips": "Il conaissait un détail interessant, l'a t'il lu à l'instant? Ou est-ce une coincidence… Ecrivez le pour vous en souvenir",
+    "investigator-won": "Le détéctive, {{ investigator }} a gagné! {{ liar }} a bien lu à propos de {{ title }}",
+    "liar-won": "Le menteur, {{ liar }} a gagné! {{ liar }} a effectivement lu à propos de {{ title }}",
+    "read-articles": "Lire les articles suivant: ",
+    "start-next": "Commencer prochaine manche",
+    "scores": "scores",
+    "stop-playing": "arrêter de jouer",
+    "final-score": "Le score final est:",
+    "did-read": "Les articles que vous avez lu etaient:",
+    "didnt-read": "Les articles que vous n'avez pas lu etaient: ",
+    "share": "partager",
+    "contribute": "contribuer",
+    "new-game": "nouveau jeu",
+    "error": "Erreur: ce level de jeu n'existe pas"
+  },
+  "loading…": "chargement…",
+  "from-wikipedia": "Un article de Wikipédia, l'encyclopédie libre",
+  "tweet-text": "Je viens de jouer à Read One Article de @haroenv"
+}
