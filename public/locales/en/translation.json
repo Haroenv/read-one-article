@@ -1,7 +1,7 @@
 {
   "intro": {
     "text": [
-      "In this game, there are two roles: the investigator and liar. Every round you will swap between those roles. ",
+      "In this game, there are two roles: the liar and investigator. Every round you will swap between those roles. ",
       "The liar will be presented with two random Wikipedia pages. They will only be able to read one of those.",
       "Then the investigator will see the titles of both pages, and given the opportunity to ask any questions about both.",
       "Will the investigator find out which page the liar made up?"
