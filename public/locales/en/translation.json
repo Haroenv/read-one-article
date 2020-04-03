@@ -21,7 +21,7 @@
     "preguessing": "Please give the device to {{investigator}}",
     "preguessing-extra": "You will now have to answer questions about both articles. Get ready to invent what the second article was!",
     "start-guessing": "start guessing",
-    "guessing": "It is now the turn of the investigator ({{investigator}}). You now can ask questions about all these articles. Once you think you know which article the person read, make a guess!",
+    "guessing": "It is now the turn of the investigator ({{investigator}}). You now can ask questions about all these articles. Once you think you know which article the person did read, make a guess!",
     "scratchpad": "Here's a scratchpad to leave your notes: ",
     "scratchpad-tips": "Interesting detail they knew, did they just read that? Or is it coincidence… Write it down to remember.",
     "investigator-won": "The investigator, {{ investigator }} won! {{ liar }} did read about {{ title }}",
