@@ -19,6 +19,7 @@
     "article": "Artikel {{number}}",
     "done-reading": "Ik ben klaar met lezen",
     "preguessing": "Geef het toestel aan {{investigator}}",
+    "preguessing-extra": "Nu zal je vragen beantwoorden over de twee artikels. Maak jezelf klaar om uit te leggen wat het andere artikel was!",
     "start-guessing": "start raden",
     "guessing": "Het is nu de beurt aan de onderzoeker ({{investigator}}). Je kan vragen stellen over deze artikels. Zodra je weet welk artikel verzonnen is, maak je je keuze!",
     "scratchpad": "Hier is een plaats om je notities te laten",

@@ -19,6 +19,7 @@
     "article": "Artikel {{number}}",
     "done-reading": "Ich bin fertig",
     "preguessing": "Bitte reiche der ermittelnden Person {{investigator}} das Gerät weiter.",
+    "preguessing-extra": "Sie müssen nun Fragen zu beiden Artikeln beantworten. Machen Sie sich bereit, den zweiten Artikel zu erfinden!",
     "start-guessing": "Raten beginnen",
     "guessing": "Die ermittelnde Person ({{investigator}}) ist jetzt am Zug. Du kannst Fragen zu diesen Artikeln stellen. Sobald Du eine Vermutung hast welchen Artikel die lügende Person gelesen hat, kannst Du abstimmen!",
     "scratchpad": "Hier hast Du einen Notizblock für deine Notizen:",

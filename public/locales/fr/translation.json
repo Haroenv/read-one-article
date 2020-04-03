@@ -19,6 +19,7 @@
     "article": "Article {{number}}",
     "done-reading": "J'ai fini de lire",
     "preguessing": "S'il vous plaît, veuillez donner l'appareil à {{investigator}}",
+    "preguessing-extra": "Maintenant vous devriez répondre des questions sur les deux articles. Préparez-vous a inventer le contenu du deuxième article!",
     "start-guessing": "Commencez à deviner",
     "guessing": "C'est maintenant au tour du détective ({{investigator}}). Vous pouvez maintenant poser des questions à propos de ces articles. Une fois que vous pensez que vous avez trouvé quel article la personne a lu, faites une proposition!",
     "scratchpad": "Voici un bloc-notes pour laisser vos notes : ",

@@ -424,6 +424,7 @@ function TwoPlayerGame({ names, stop, language }) {
     return (
       <div className="full-center">
         <div>
+          <p>{t('game.preguessing-extra')}</p>
           <p>
             <Trans i18nKey="game.preguessing">
               Please give the device to {{ investigator }}
