@@ -129,6 +129,8 @@ function WikipediaIframe({ article, language }) {
         style.innerHTML = raw('./wikipedia.css');
         document.head.appendChild(style);
 
+        document.documentElement.lang = language === 'simple' ? 'en' : language;
+
         document.body.innerHTML = `
           <base href="https://${language}.wikipedia.org" />
           <h1>${article.title}</h1>
@@ -633,6 +635,15 @@ function App() {
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    const languageExists = i18n.exists('from-wikipedia', {
+      lng: i18n.language,
+      fallbackLng: [],
+    });
+    document.documentElement.lang = languageExists ? i18n.language : 'en';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.language]);
 
   const start = () => setStarted(true);
   const stop = () => setStarted(false);
