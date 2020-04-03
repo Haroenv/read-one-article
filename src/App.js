@@ -642,8 +642,7 @@ function App() {
       fallbackLng: [],
     });
     document.documentElement.lang = languageExists ? i18n.language : 'en';
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [i18n.language]);
+  }, [i18n]);
 
   const start = () => setStarted(true);
   const stop = () => setStarted(false);
