@@ -4,7 +4,7 @@ This is a Wikipedia game inspired by ["Two Of These People Are Lying"](https://w
 
 It's been edited to work for two people stuck in confinement, since without this game, you wouldn't be able to keep one of the articles secret.
 
-[Play it!](https://read-one-article.netlify.com/)
+[Play it!](https://read-one-article.com/)
 
 ## Development
 
