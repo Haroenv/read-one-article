@@ -6,9 +6,9 @@
       "Die ermittelnden Person sieht die Titel beider Artikel und bekommt die Möglichkeit, Fragen zu den Artikeln zu stellen.",
       "Wird die ermittelnde Person herausfinden, welchen Artikel sich die lügende Person ausgedacht hat?"
     ],
-    "language": "<0>Sprache: </0>",
-    "player-one": "<0>Spieler eins: </0>",
-    "player-two": "<0>Spieler zwei: </0>",
+    "language": "Sprache: ",
+    "player-one": "Spieler eins: ",
+    "player-two": "Spieler zwei: ",
     "player-identical": "Spieler können nicht den gleichen Namen haben!",
     "start": "Start!",
     "footer": "Dieses Spiel wurde inspiriert von <2>Two Of These People Are Lying</2> von Tom Scott und Matt Grey."
@@ -19,6 +19,7 @@
     "article": "Artikel {{number}}",
     "done-reading": "Ich bin fertig",
     "preguessing": "Bitte reiche der ermittelnden Person {{investigator}} das Gerät weiter.",
+    "preguessing-extra": "Sie müssen nun Fragen zu beiden Artikeln beantworten. Machen Sie sich bereit, den zweiten Artikel zu erfinden!",
     "start-guessing": "Raten beginnen",
     "guessing": "Die ermittelnde Person ({{investigator}}) ist jetzt am Zug. Du kannst Fragen zu diesen Artikeln stellen. Sobald Du eine Vermutung hast welchen Artikel die lügende Person gelesen hat, kannst Du abstimmen!",
     "scratchpad": "Hier hast Du einen Notizblock für deine Notizen:",

@@ -129,6 +129,8 @@ function WikipediaIframe({ article, language }) {
         style.innerHTML = raw('./wikipedia.css');
         document.head.appendChild(style);
 
+        document.documentElement.lang = language === 'simple' ? 'en' : language;
+
         document.body.innerHTML = `
           <base href="https://${language}.wikipedia.org" />
           <h1>${article.title}</h1>
@@ -422,6 +424,7 @@ function TwoPlayerGame({ names, stop, language }) {
     return (
       <div className="full-center">
         <div>
+          <p>{t('game.preguessing-extra')}</p>
           <p>
             <Trans i18nKey="game.preguessing">
               Please give the device to {{ investigator }}
@@ -634,6 +637,14 @@ function App() {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    const languageExists = i18n.exists('from-wikipedia', {
+      lng: i18n.language,
+      fallbackLng: [],
+    });
+    document.documentElement.lang = languageExists ? i18n.language : 'en';
+  }, [i18n]);
+
   const start = () => setStarted(true);
   const stop = () => setStarted(false);
 
@@ -667,9 +678,7 @@ function App() {
         }}
       >
         <label>
-          <Trans i18nKey="intro.language">
-            <span>Language: </span>
-          </Trans>
+          <span>{t('intro.language')}</span>
           <select
             className="language"
             value={i18n.language}
@@ -687,9 +696,7 @@ function App() {
         </label>
 
         <label>
-          <Trans i18nKey="intro.player-one">
-            <span>Player one: </span>
-          </Trans>
+          <span>{t('intro.player-one')}</span>
           <input
             required
             type="text"
@@ -699,9 +706,7 @@ function App() {
         </label>
 
         <label>
-          <Trans i18nKey="intro.player-two">
-            <span>Player two: </span>
-          </Trans>
+          <span>{t('intro.player-two')}</span>
           <input
             required
             type="text"
