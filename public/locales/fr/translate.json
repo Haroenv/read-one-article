@@ -1,7 +1,7 @@
 {
   "intro": {
     "text": [
-      "Dans ce jeu, il y a deux rôles: le détective et le menteur. A chaque tours, vous allez alterner entre ces deux rôles.",
+      "Dans ce jeu, il y a deux rôles: le menteur et le détective. A chaque tours, vous allez alterner entre ces deux rôles.",
       "Le menteur aura deux articles Wikipedia au hasard qui lui seront présenté. Il ne lui sera permi de n'en lire qu'un seul.",
       "Ensuite, le détective verra le titre des deux pages, et aura l'opportunité de poser n'importe quelle question à propos des deux pages.",
       "Est-ce que le détective pourra trouver laquelle de ces deux pages le menteur a inventé?"
