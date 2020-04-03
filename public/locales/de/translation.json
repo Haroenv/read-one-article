@@ -1,10 +1,10 @@
 {
   "intro": {
     "text": [
-      "In diesem Spiel gibt es zwei Rollen: Den Lügner und den Ermittler. Bei Beginn jeder Runde werden die Rollen getauscht.",
-      "Dem Lügner werden zwei zufällige Wikipedia Artikel präsentiert. Nur einer der beiden Artikel kann gelesen werden.",
-      "Der Ermittler sieht die Titel beider Artikel und bekommt die Möglichkeit, Fragen zu den Artikeln zu stellen.",
-      "Wird der Ermittler herausfinden, welchen Artikel sich der Lügner ausgedacht hat?"
+      "In diesem Spiel gibt es zwei Rollen: Die lügende Person und die ermittelnde Person. Bei Beginn jeder Runde werden die Rollen getauscht.",
+      "Der lügenden Person werden zwei zufällige Wikipedia Artikel präsentiert. Nur einer der beiden Artikel kann gelesen werden.",
+      "Die ermittelnden Person sieht die Titel beider Artikel und bekommt die Möglichkeit, Fragen zu den Artikeln zu stellen.",
+      "Wird die ermittelnde Person herausfinden, welchen Artikel sich die lügende Person ausgedacht hat?"
     ],
     "language": "<0>Sprache: </0>",
     "player-one": "<0>Spieler eins: </0>",
@@ -15,16 +15,16 @@
   },
   "game": {
     "try-again": "Nochmal versuchen",
-    "choosing": "Der Lügner ({{liar}}) ist jetzt am Zug. Entscheide Dich für einen der Artikel, um Dich über ein Gebiet zu informieren:",
+    "choosing": "Die lügende Person ({{liar}}) ist jetzt am Zug. Entscheide Dich für einen der Artikel, um Dich über ein Gebiet zu informieren:",
     "article": "Artikel {{number}}",
     "done-reading": "Ich bin fertig",
-    "preguessing": "Bitte reiche dem Ermittler {{investigator}} das Gerät weiter.",
+    "preguessing": "Bitte reiche der ermittelnden Person {{investigator}} das Gerät weiter.",
     "start-guessing": "Raten beginnen",
-    "guessing": "Der Ermittler ({{investigator}}) ist jetzt am Zug. Du kannst Fragen zu diesen Artikeln stellen. Sobald Du eine Vermutung hast welchen Artikel der Lügner gelesen hat, kannst Du abstimmen!",
+    "guessing": "Die ermittelnde Person ({{investigator}}) ist jetzt am Zug. Du kannst Fragen zu diesen Artikeln stellen. Sobald Du eine Vermutung hast welchen Artikel die lügende Person gelesen hat, kannst Du abstimmen!",
     "scratchpad": "Hier hast Du einen Notizblock für deine Notizen:",
-    "scratchpad-tips": "Interessante Details die der Lügner bereits wusste oder gerade gelesen hat… oder ist das nur Zufall? Schreibe es zur Erinnerung auf.",
-    "investigator-won": "Der Ermittler, {{ investigator }} hat gewonnen! {{ liar }} hat {{ title }} gelesen.",
-    "liar-won": "Der Lügner, {{ liar }} hat gewonnen! {{ liar }} hat eigentlich {{ title }} gelesen.",
+    "scratchpad-tips": "Interessante Details die die lügende Person bereits wusste oder gerade gelesen hat… oder ist das nur Zufall? Schreibe es zur Erinnerung auf.",
+    "investigator-won": "Die ermittelnde Person, {{ investigator }} hat gewonnen! {{ liar }} hat {{ title }} gelesen.",
+    "liar-won": "Die lügende Person, {{ liar }} hat gewonnen! {{ liar }} hat eigentlich {{ title }} gelesen.",
     "read-articles": "Lies die Artikel:",
     "start-next": "Nächste Runde starten",
     "scores": "Punktestand",
