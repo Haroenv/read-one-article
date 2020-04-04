@@ -536,7 +536,7 @@ function TwoPlayerGame({ names, stop, language }) {
 
   if (stage === 'finish') {
     return (
-      <div className="full-center">
+      <div className="full-center finish">
         <div>
           <p>{t('game.final-score')}</p>
           <ul className="scores-list">

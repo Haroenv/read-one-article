@@ -1,5 +1,6 @@
 @media (max-height: 800px) {
-  .intro {
+  .intro,
+  .finish {
     height: unset;
   }
 }
