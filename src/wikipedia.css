@@ -57,6 +57,7 @@ body {
 img {
   border: 0;
   vertical-align: middle;
+  max-width: 100%;
 }
 
 hr {
