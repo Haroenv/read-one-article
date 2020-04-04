@@ -4,7 +4,7 @@
       "In diesem Spiel gibt es zwei Rollen: Die lügende Person und die ermittelnde Person. Bei Beginn jeder Runde werden die Rollen getauscht.",
       "Der lügenden Person werden zwei zufällige Wikipedia Artikel präsentiert. Nur einer der beiden Artikel kann gelesen werden.",
       "Die ermittelnden Person sieht die Titel beider Artikel und bekommt die Möglichkeit, Fragen zu den Artikeln zu stellen.",
-      "Wird die ermittelnde Person herausfinden, welchen Artikel sich die lügende Person ausgedacht hat?"
+      "Wird die ermittelnde Person herausfinden, welche Antworten zu einem Artikel sich die lügende Person ausgedacht hat?"
     ],
     "language": "Sprache: ",
     "player-one": "Spieler eins: ",
@@ -19,7 +19,7 @@
     "article": "Artikel {{number}}",
     "done-reading": "Ich bin fertig",
     "preguessing": "Bitte reiche der ermittelnden Person {{investigator}} das Gerät weiter.",
-    "preguessing-extra": "Sie müssen nun Fragen zu beiden Artikeln beantworten. Machen Sie sich bereit, den zweiten Artikel zu erfinden!",
+    "preguessing-extra": "Du musst nun Fragen zu beiden Artikeln beantworten. Mache Dich bereit, Antworten zu dem anderen Artikel zu erfinden!",
     "start-guessing": "Raten beginnen",
     "guessing": "Die ermittelnde Person ({{investigator}}) ist jetzt am Zug. Du kannst Fragen zu diesen Artikeln stellen. Sobald Du eine Vermutung hast welchen Artikel die lügende Person gelesen hat, kannst Du abstimmen!",
     "scratchpad": "Hier hast Du einen Notizblock für deine Notizen:",
