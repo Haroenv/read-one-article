@@ -91,6 +91,7 @@ a {
   text-decoration: none;
   color: var(--c-blue-100);
   background: none;
+  word-break: break-all;
 }
 
 a:hover,
