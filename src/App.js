@@ -643,7 +643,9 @@ function App() {
       fallbackLng: [],
     });
     document.documentElement.lang = languageExists ? i18n.language : 'en';
-  }, [i18n]);
+  }, [i18n, i18n.language]);
+
+  window.i18n = i18n;
 
   const start = () => setStarted(true);
   const stop = () => setStarted(false);
@@ -653,7 +655,7 @@ function App() {
       <TwoPlayerGame
         names={[nameOne, nameTwo]}
         stop={stop}
-        language={i18n.language}
+        language={i18n.languages[0]}
       />
     );
   }
