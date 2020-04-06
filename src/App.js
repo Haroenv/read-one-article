@@ -645,8 +645,6 @@ function App() {
     document.documentElement.lang = languageExists ? i18n.language : 'en';
   }, [i18n, i18n.language]);
 
-  window.i18n = i18n;
-
   const start = () => setStarted(true);
   const stop = () => setStarted(false);
 
