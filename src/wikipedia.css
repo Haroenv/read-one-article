@@ -51,6 +51,8 @@ body {
   .infobox {
     margin: 0;
     float: none;
+    width: unset !important;
+    max-width: unset;
   }
 }
 
