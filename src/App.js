@@ -226,6 +226,21 @@ function Loading({ children = 'loading…' }) {
   return <div className="full-center">{children}</div>;
 }
 
+function PlayerIndicator({ liar, investigator, active }) {
+  return (
+    <ul className="player-indicator">
+      <li className={active === 'liar' ? 'active' : ''}>
+        <Trans i18nKey="game.current-liar">liar: {{ liar }}</Trans>
+      </li>
+      <li className={active === 'investigator' ? 'active' : ''}>
+        <Trans i18nKey="game.current-investigator">
+          investigator: {{ investigator }}
+        </Trans>
+      </li>
+    </ul>
+  );
+}
+
 // stage:
 // 1. choosing
 // 2. reading
@@ -374,7 +389,12 @@ function TwoPlayerGame({ names, stop, language }) {
   if (stage === 'choosing') {
     return (
       <div className="full-center">
-        <div>
+        <PlayerIndicator
+          liar={liar}
+          investigator={investigator}
+          active="liar"
+        />
+        <div className="full-center-child">
           <p>
             <Trans i18nKey="game.choosing">
               It is now the turn of the liar ({{ liar }}). To read up on one
@@ -423,7 +443,12 @@ function TwoPlayerGame({ names, stop, language }) {
   if (stage === 'preguessing') {
     return (
       <div className="full-center">
-        <div>
+        <PlayerIndicator
+          liar={liar}
+          investigator={investigator}
+          active="liar"
+        />
+        <div className="full-center-child">
           <p>{t('game.preguessing-extra')}</p>
           <p>
             <Trans i18nKey="game.preguessing">
@@ -444,7 +469,12 @@ function TwoPlayerGame({ names, stop, language }) {
   if (stage === 'guessing') {
     return (
       <div className="full-center">
-        <div>
+        <PlayerIndicator
+          liar={liar}
+          investigator={investigator}
+          active="investigator"
+        />
+        <div className="full-center-child">
           <p>
             <Trans i18nKey="game.guessing">
               It is now the turn of the investigator ({{ investigator }}). You
@@ -474,7 +504,12 @@ function TwoPlayerGame({ names, stop, language }) {
   if (stage === 'recap') {
     return (
       <div className="full-center">
-        <div>
+        <PlayerIndicator
+          liar={liar}
+          investigator={investigator}
+          active="investigator"
+        />
+        <div className="full-center-child">
           <p>
             {guessCorrect ? (
               <Trans i18nKey="game.investigator-won">

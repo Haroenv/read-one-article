@@ -14,6 +14,8 @@
     "footer": "This game was inspired by <2>Two Of These People Are Lying</2> by Tom Scott and Matt Grey."
   },
   "game": {
+    "current-liar": "liar: {{liar}}",
+    "current-investigator": "investigator: {{investigator}}",
     "try-again": "try again",
     "choosing": "It is now the turn of the liar ({{liar}}). To read up on one topic, please pick one of these articles:",
     "article": "Article {{number}}",

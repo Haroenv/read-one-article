@@ -14,6 +14,8 @@
     "footer": "Ce jeu a été inspiré par <2>Two Of These People Are Lying</2> de Tom Scott et Matt Grey."
   },
   "game": {
+    "current-liar": "menteur : {{liar}}",
+    "current-investigator": "détective : {{investigator}}",
     "try-again": "essayez encore",
     "choosing": "C'est maintenant au tour du menteur ({{liar}}) de lire a propos des deux sujets, s'il vous plaît, choisissez l'un des deux articles:",
     "article": "Article {{number}}",
