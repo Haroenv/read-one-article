@@ -14,6 +14,8 @@
     "footer": "Dit spel is geïnspireerd door <2>Two Of These People Are Lying</2>, door Tom Scott and Matt Grey."
   },
   "game": {
+    "current-liar": "leugenaar: {{liar}}",
+    "current-investigator": "onderzoeker: {{investigator}}",
     "try-again": "probeer opnieuw",
     "choosing": "Het is nu de beurt aan de leugenaar ({{liar}}). Kies één van deze twee artikels om meer over te lezen: ",
     "article": "Artikel {{number}}",

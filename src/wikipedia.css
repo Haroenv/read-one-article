@@ -51,12 +51,15 @@ body {
   .infobox {
     margin: 0;
     float: none;
+    width: unset !important;
+    max-width: unset;
   }
 }
 
 img {
   border: 0;
   vertical-align: middle;
+  max-width: 100%;
 }
 
 hr {
@@ -90,6 +93,7 @@ a {
   text-decoration: none;
   color: var(--c-blue-100);
   background: none;
+  word-break: break-all;
 }
 
 a:hover,
