@@ -13,8 +13,7 @@ html {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   --c-grey-100: #f8f9fa;
-  --c-grey-200: #a2a9b1;
-  --c-grey-900: #1f2429;
+  --c-grey-200: #687481;
 
   --c-blue-100: #0645ad;
   --c-blue-200: #0b0080;
@@ -29,7 +28,7 @@ html {
   /* something causes option on Windows to stay white, even with `inherit` */
   option {
     color: var(--c-grey-100);
-    background-color: var(--c-grey-900);
+    background-color: var(--c-grey-200);
   }
 }
 
